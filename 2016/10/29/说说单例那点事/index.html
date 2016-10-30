@@ -4,17 +4,29 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>说说单例那点事 | Hexo</title>
+  <title>说说单例那点事 | 阿布哥</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="Singleton Design Pattern
+What is it?单例也就是单实例，也就是JVM中只存在一个某类对象，且对外提供一个获取该对象的方法。
+
+Where you can use it?单例使用场景众多，如日志记录对象、JDBC驱动对象 、缓存对象、线程池对象等。在JDK的核心类库中， java.lang.Runtime, java.awt.Desktop等为单例对象，并且 Abs">
+<meta property="og:type" content="article">
 <meta property="og:title" content="说说单例那点事">
 <meta property="og:url" content="http://yoursite.com/2016/10/29/说说单例那点事/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:updated_time" content="2016-10-29T13:00:34.542Z">
+<meta property="og:site_name" content="阿布哥">
+<meta property="og:description" content="Singleton Design Pattern
+What is it?单例也就是单实例，也就是JVM中只存在一个某类对象，且对外提供一个获取该对象的方法。
+
+Where you can use it?单例使用场景众多，如日志记录对象、JDBC驱动对象 、缓存对象、线程池对象等。在JDK的核心类库中， java.lang.Runtime, java.awt.Desktop等为单例对象，并且 Abs">
+<meta property="og:updated_time" content="2016-10-30T12:33:29.343Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="说说单例那点事">
+<meta name="twitter:description" content="Singleton Design Pattern
+What is it?单例也就是单实例，也就是JVM中只存在一个某类对象，且对外提供一个获取该对象的方法。
+
+Where you can use it?单例使用场景众多，如日志记录对象、JDBC驱动对象 、缓存对象、线程池对象等。在JDK的核心类库中， java.lang.Runtime, java.awt.Desktop等为单例对象，并且 Abs">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="阿布哥" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -75,7 +87,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -112,7 +124,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/二分法/" style="font-size: 10px;">二分法</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/彼岸/" style="font-size: 10px;">彼岸</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/点滴/" style="font-size: 10px;">点滴</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/起航/" style="font-size: 10px;">起航</a> <a href="/tags/远行/" style="font-size: 10px;">远行</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+						<a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/creational-design-pattern/" style="font-size: 10px;">creational design pattern</a> <a href="/tags/creational-design-patterns/" style="font-size: 10px;">creational design patterns</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/二分法/" style="font-size: 10px;">二分法</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/彼岸/" style="font-size: 10px;">彼岸</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/点滴/" style="font-size: 10px;">点滴</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/起航/" style="font-size: 10px;">起航</a> <a href="/tags/远行/" style="font-size: 10px;">远行</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
 					</div>
 				</section>
 				
@@ -219,7 +231,15 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/creational-design-pattern/">creational design pattern</a></li></ul>
+	</div>
+
         
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
 
         <div class="clearfix"></div>
       </div>
@@ -227,7 +247,107 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="Singleton-Design-Pattern"><a href="#Singleton-Design-Pattern" class="headerlink" title="Singleton Design Pattern"></a>Singleton Design Pattern</h1><ol>
+<li><p><strong>What</strong> is it?<br>单例也就是单实例，也就是JVM中只存在一个某类对象，且对外提供一个获取该对象的方法。</p>
+</li>
+<li><p><strong>Where</strong> you can use it?<br>单例使用场景众多，如日志记录对象、JDBC驱动对象 、缓存对象、线程池对象等。在JDK的核心类库中， java.lang.Runtime, java.awt.Desktop等为单例对象，并且 AbstractFactory, Builder, Prototype, Facade等设计模式中也使用单例对象（使用单例模式的思想，也就是融会贯通）。</p>
+</li>
+<li><p><strong>How</strong> to implement it?</p>
+<ul>
+<li><p>private constructor method</p>
+<ul>
+<li>禁止外部创建对象</li>
+</ul>
+</li>
+<li><p>private static this class instance variable</p>
+<ul>
+<li>存储该类唯一的对象</li>
+</ul>
+</li>
+<li><p>public method to get this class instance</p>
+<ul>
+<li>提供给外部获取该单例对象的方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong></p>
+</li>
+</ol>
+<ul>
+<li>Eager Initialization<ul>
+<li>Class加载时对象已经创建，缺点是无论Client是否使用，对象已经创建</li>
+<li>无异常处理</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EagerInitializedSingleton</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">EagerInitializedSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> EagerInitializedSingleton instance = <span class="keyword">new</span> EagerInitializedSingleton();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> EagerInitializedSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Static block initialization<ul>
+<li>增加异常处理</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticBlockSingleton</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">StaticBlockSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> StaticBlockSingleton instance;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            instance = <span class="keyword">new</span> StaticBlockSingleton();</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"exception occured in careating singleton instance."</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StaticBlockSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Lazy Initialization<ul>
+<li>优点是Client使用时才创建实例</li>
+<li>缺点是线程不安全</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyInitializedSingletonLazyInitializedSingleton</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazyInitializedSingletonLazyInitializedSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> LazyInitializedSingletonLazyInitializedSingleton instance;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazyInitializedSingletonLazyInitializedSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            instance = <span class="keyword">new</span> LazyInitializedSingletonLazyInitializedSingleton();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Thread Safe Sigleton<ul>
+<li>Client使用时创建</li>
+<li>线程安全</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">		<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadSafeSingleton</span> </span>&#123;</div><div class="line">	    <span class="function"><span class="keyword">private</span> <span class="title">ThreadSafeSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">	</div><div class="line">	    &#125;</div><div class="line">	</div><div class="line">	    <span class="keyword">private</span> <span class="keyword">static</span> ThreadSafeSingleton instance;</div><div class="line">	</div><div class="line">	    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">static</span> ThreadSafeSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">	        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">	            instance = <span class="keyword">new</span> ThreadSafeSingleton();</div><div class="line">	        &#125;</div><div class="line">	        <span class="keyword">return</span> instance;</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">``` </div><div class="line">- 双锁校验Thread Safe Singleton</div><div class="line">	- 只有第一次创建时使用锁</div><div class="line">``` <span class="function">java</span></div><div class="line">		<span class="keyword">public</span> <span class="keyword">static</span>  ThreadSafeSingleton <span class="title">getInstanceUsingDoubleLocking</span><span class="params">()</span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance)&#123;</div><div class="line">            <span class="keyword">synchronized</span> (ThreadSafeSingleton.class)&#123;</div><div class="line">                <span class="keyword">if</span> (<span class="keyword">null</span> == instance)&#123;</div><div class="line">                    instance = <span class="keyword">new</span> ThreadSafeSingleton();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Bill Pugh Singleton Implementation<ul>
+<li>使用静态内部类，无需同步锁</li>
+<li>线程安全</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BillPughSingleton</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">BillPughSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHelper</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> BillPughSingleton INSTANCE = <span class="keyword">new</span> BillPughSingleton();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BillPughSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> SingletonHelper.INSTANCE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Using Reflection to destroy Singleton Pattern<ul>
+<li>通过反射可以破坏单例，创建新对象</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionSingletonTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        EagerInitializedSingleton instanceOne = EagerInitializedSingleton.getInstance();</div><div class="line">        EagerInitializedSingleton instanceTwo = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Constructor[] constructors = EagerInitializedSingleton.class.getDeclaredConstructors();</div><div class="line">            <span class="keyword">for</span> (Constructor construtor : constructors) &#123;</div><div class="line">                construtor.setAccessible(<span class="keyword">true</span>);</div><div class="line">                instanceTwo = (EagerInitializedSingleton) construtor.newInstance();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        System.out.println(instanceOne.hashCode());</div><div class="line">        System.out.println(instanceTwo.hashCode());</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>Enum Singleton</p>
+<ul>
+<li>不灵活</li>
+<li>不支持懒加载</li>
+<li>解决反射破坏单例的问题<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EnumSingleton &#123;</div><div class="line">    INSTANCE;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Serialization and Singleton</p>
+<ul>
+<li>反序列化时获取的是新对象</li>
+<li>instanceOne hashCode = 17030099</li>
+<li>instanceTwo hashCode = 3615232</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">		<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SerializedSingleton</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">		    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">4535403786288899650L</span>;</div><div class="line">		</div><div class="line">		    <span class="function"><span class="keyword">private</span> <span class="title">SerializedSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">		    &#125;</div><div class="line">		</div><div class="line">		    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHelper</span> </span>&#123;</div><div class="line">		        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SerializedSingleton INSTANCE = <span class="keyword">new</span> SerializedSingleton();</div><div class="line">		    &#125;</div><div class="line">		</div><div class="line">		    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SerializedSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">		        <span class="keyword">return</span> SingletonHelper.INSTANCE;</div><div class="line">		    &#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">``` </div><div class="line">	- 测试单例序列化</div><div class="line">``` java</div><div class="line">		<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonSerializedTest</span> </span>&#123;</div><div class="line">		    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		        SerializedSingleton instanceOne = SerializedSingleton.getInstance();</div><div class="line">		</div><div class="line">		        <span class="keyword">try</span> &#123;</div><div class="line">		            ObjectOutput out = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"filename.ser"</span>));</div><div class="line">		            out.writeObject(instanceOne);</div><div class="line">		</div><div class="line">		            ObjectInput in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"filename.ser"</span>));</div><div class="line">		            SerializedSingleton instanceTwo = (SerializedSingleton) in.readObject();</div><div class="line">		</div><div class="line">		            System.out.println(<span class="string">"instanceOne hashCode = "</span> + instanceOne.hashCode());</div><div class="line">		            System.out.println(<span class="string">"instanceTwo hashCode = "</span> + instanceTwo.hashCode());</div><div class="line">		        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">		            e.printStackTrace();</div><div class="line">		        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">		            e.printStackTrace();</div><div class="line">		        &#125;</div><div class="line">		    &#125;</div><div class="line">		&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>序列化破坏单例问题解决方法<ul>
+<li>增加方法readResolve(反序列化时会调用)</li>
+<li>反序列化时读取的是单例对象不会重新创建新对象</li>
+<li>instanceOne hashCode = 17030099</li>
+<li>instanceTwo hashCode = 17030099</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SerializedSingleton</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">4535403786288899650L</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SerializedSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHelper</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SerializedSingleton INSTANCE = <span class="keyword">new</span> SerializedSingleton();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SerializedSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> SingletonHelper.INSTANCE;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">readResolve</span><span class="params">()</span></span>&#123;</div><div class="line">       <span class="keyword">return</span> getInstance();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -235,6 +355,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/10/30/Creational-Design-Patterns/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Creational Design Patterns
+        
+      </div>
+    </a>
   
   
     <a href="/2016/10/29/品读设计模式/" id="article-nav-older" class="article-nav-link-wrap">
