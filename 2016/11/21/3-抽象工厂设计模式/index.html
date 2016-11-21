@@ -16,7 +16,8 @@ How to implement it?
 设计一个根据工厂类型获取对象的方法，去除原工厂模式中的if/else判断，使用抽象工厂类型作为入参，生产对象
 
 
-Code Demo ```">
+Code Demo
+ 123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3.抽象工厂设计模式">
 <meta property="og:url" content="http://yoursite.com/2016/11/21/3-抽象工厂设计模式/index.html">
@@ -31,8 +32,9 @@ How to implement it?
 设计一个根据工厂类型获取对象的方法，去除原工厂模式中的if/else判断，使用抽象工厂类型作为入参，生产对象
 
 
-Code Demo ```">
-<meta property="og:updated_time" content="2016-11-21T14:47:01.717Z">
+Code Demo
+ 123">
+<meta property="og:updated_time" content="2016-11-21T14:50:33.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3.抽象工厂设计模式">
 <meta name="twitter:description" content="Abstract Factory Pattern
@@ -45,7 +47,8 @@ How to implement it?
 设计一个根据工厂类型获取对象的方法，去除原工厂模式中的if/else判断，使用抽象工厂类型作为入参，生产对象
 
 
-Code Demo ```">
+Code Demo
+ 123">
   
     <link rel="alternative" href="/atom.xml" title="阿布哥" type="application/atom+xml">
   
@@ -108,7 +111,7 @@ Code Demo ```">
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -278,72 +281,11 @@ Code Demo ```">
 <li>设计一个根据工厂类型获取对象的方法，去除原工厂模式中的if/else判断，使用抽象工厂类型作为入参，生产对象</li>
 </ul>
 </li>
-<li><p><strong>Code Demo</strong><br> ``` java<br>package designpattern.creational.abstractfactory;</p>
+<li><p><strong>Code Demo</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.creational.abstractfactory;</div><div class="line"></div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Computer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/21.</div><div class="line"> * A.Abstract Factory</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ComputerAbstractFactory</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Computer <span class="title">createComputer</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.creational.abstractfactory;</div><div class="line"></div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Computer;</div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.PC;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/21.</div><div class="line"> * B. Sub Class Factory</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PCFactory</span> <span class="keyword">implements</span> <span class="title">ComputerAbstractFactory</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String ram;</div><div class="line">    <span class="keyword">private</span> String hdd;</div><div class="line">    <span class="keyword">private</span> String cpu;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PCFactory</span><span class="params">(String ram, String hdd, String cpu)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.ram = ram;</div><div class="line">        <span class="keyword">this</span>.hdd = hdd;</div><div class="line">        <span class="keyword">this</span>.cpu = cpu;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Computer <span class="title">createComputer</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PC(ram, hdd, cpu);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.creational.abstractfactory;</div><div class="line"></div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Computer;</div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Server;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/21.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServerFactory</span> <span class="keyword">implements</span> <span class="title">ComputerAbstractFactory</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String ram;</div><div class="line">    <span class="keyword">private</span> String hdd;</div><div class="line">    <span class="keyword">private</span> String cpu;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ServerFactory</span><span class="params">(String ram, String hdd, String cpu)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.ram = ram;</div><div class="line">        <span class="keyword">this</span>.hdd = hdd;</div><div class="line">        <span class="keyword">this</span>.cpu = cpu;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Computer <span class="title">createComputer</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Server(ram,hdd,cpu);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.creational.abstractfactory;</div><div class="line"></div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Computer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/21.</div><div class="line"> * C. Fatory Class</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerFactory</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Computer <span class="title">getComputer</span><span class="params">(ComputerAbstractFactory factory)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> factory.createComputer();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.creational.abstractfactory;</div><div class="line"></div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Computer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/20.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFactory</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        Computer pc = ComputerFactory.getComputer(<span class="keyword">new</span> PCFactory(<span class="string">"2G"</span>, <span class="string">"500G"</span>, <span class="string">"4GHZ"</span>));</div><div class="line"></div><div class="line">        Computer server = ComputerFactory.getComputer(<span class="keyword">new</span> ServerFactory(<span class="string">"32G"</span>, <span class="string">"1000G"</span>, <span class="string">"8GHZ"</span>));</div><div class="line">        System.out.println(<span class="string">"get pc config from abstract factory is "</span> + pc);</div><div class="line">        System.out.println(<span class="string">"get server config from abstract factory is "</span> + server);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>import designpattern.creational.factory.Computer;</p>
-<p>/**</p>
+<li><p><strong>Benefits</strong></p>
 <ul>
-<li>Created by AbuGe on 2016/11/21.</li>
-<li>A.Abstract Factory<br>*/<br>public interface ComputerAbstractFactory {<br> public Computer createComputer();<br>}</li>
-</ul>
-<p>package designpattern.creational.abstractfactory;</p>
-<p>import designpattern.creational.factory.Computer;<br>import designpattern.creational.factory.PC;</p>
-<p>/**</p>
-<ul>
-<li>Created by AbuGe on 2016/11/21.</li>
-<li><p>B. Sub Class Factory<br>*/<br>public class PCFactory implements ComputerAbstractFactory {</p>
-<p> private String ram;<br> private String hdd;<br> private String cpu;</p>
-<p> public PCFactory(String ram, String hdd, String cpu) {</p>
-<pre><code>this.ram = ram;
-this.hdd = hdd;
-this.cpu = cpu;
-</code></pre><p> }</p>
-<p> @Override<br> public Computer createComputer() {</p>
-<pre><code>return new PC(ram, hdd, cpu);
-</code></pre><p> }<br>}</p>
-</li>
-</ul>
-<p>package designpattern.creational.abstractfactory;</p>
-<p>import designpattern.creational.factory.Computer;<br>import designpattern.creational.factory.Server;</p>
-<p>/**</p>
-<ul>
-<li><p>Created by AbuGe on 2016/11/21.<br>*/<br>public class ServerFactory implements ComputerAbstractFactory {<br> private String ram;<br> private String hdd;<br> private String cpu;</p>
-<p> public ServerFactory(String ram, String hdd, String cpu) {</p>
-<pre><code>this.ram = ram;
-this.hdd = hdd;
-this.cpu = cpu;
-</code></pre><p> }</p>
-<p> @Override<br> public Computer createComputer() {</p>
-<pre><code>return new Server(ram,hdd,cpu);
-</code></pre><p> }<br>}</p>
-</li>
-</ul>
-<p>package designpattern.creational.abstractfactory;</p>
-<p>import designpattern.creational.factory.Computer;</p>
-<p>/**</p>
-<ul>
-<li>Created by AbuGe on 2016/11/21.</li>
-<li>C. Fatory Class<br>*/<br>public class ComputerFactory {<br> public static Computer getComputer(ComputerAbstractFactory factory){<pre><code>return factory.createComputer();
-</code></pre> }<br>}</li>
-</ul>
-<p>package designpattern.creational.abstractfactory;</p>
-<p>import designpattern.creational.factory.Computer;</p>
-<p>/**</p>
-<ul>
-<li><p>Created by AbuGe on 2016/11/20.<br>*/<br>public class TestFactory {<br> public static  void  main(String[] args){</p>
-<pre><code>Computer pc = ComputerFactory.getComputer(new PCFactory(&quot;2G&quot;, &quot;500G&quot;, &quot;4GHZ&quot;));
-
-Computer server = ComputerFactory.getComputer(new ServerFactory(&quot;32G&quot;, &quot;1000G&quot;, &quot;8GHZ&quot;));
-System.out.println(&quot;get pc config from abstract factory is &quot; + pc);
-System.out.println(&quot;get server config from abstract factory is &quot; + server);
-</code></pre><p> }</p>
-</li>
-</ul>
-<p>}</p>
-<pre><code>``` 
-</code></pre><ol>
-<li><strong>Benefits</strong><ul>
 <li>面向接口编程，客户端与服务端解耦</li>
 <li>更易扩展，增加新工厂即可，与源代码无耦合</li>
 <li>更健壮，去除工厂模式的条件判断逻辑</li>
@@ -360,8 +302,8 @@ System.out.println(&quot;get server config from abstract factory is &quot; + ser
 <nav id="article-nav">
   
   
-    <a href="/2016/11/20/JustCeshi/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JustCeshi</div>
+    <a href="/2016/11/20/2-工厂设计模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2.工厂设计模式</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
