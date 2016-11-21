@@ -195,6 +195,200 @@
 
       <div class="body-wrap">
   
+    <article id="post-3-抽象工厂设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/21/3-抽象工厂设计模式/" class="article-date">
+  	<time datetime="2016-11-21T14:03:35.000Z" itemprop="datePublished">2016-11-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/21/3-抽象工厂设计模式/">3.抽象工厂设计模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Abstract-Factory-Pattern"><a href="#Abstract-Factory-Pattern" class="headerlink" title="Abstract Factory Pattern"></a>Abstract Factory Pattern</h1><ol>
+<li><p><strong>What</strong> is it?</p>
+<p> 抽象工厂模式是建立在工厂模式的基础上，对工厂模式中的工厂进一步抽象出一个<strong>抽象工厂</strong>。</p>
+</li>
+<li><p><strong>How</strong> to implement it?</p>
+<ul>
+<li>设计一个抽象工厂类，定义工厂的公共方法（获取对象）</li>
+<li>设计一个根据工厂类型获取对象的方法，去除原工厂模式中的if/else判断，使用抽象工厂类型作为入参，生产对象</li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong><br> ``` java<br>package designpattern.creational.abstractfactory;</p>
+</li>
+</ol>
+<p>import designpattern.creational.factory.Computer;</p>
+<p>/**</p>
+<ul>
+<li>Created by AbuGe on 2016/11/21.</li>
+<li>A.Abstract Factory<br>*/<br>public interface ComputerAbstractFactory {<br> public Computer createComputer();<br>}</li>
+</ul>
+<p>package designpattern.creational.abstractfactory;</p>
+<p>import designpattern.creational.factory.Computer;<br>import designpattern.creational.factory.PC;</p>
+<p>/**</p>
+<ul>
+<li>Created by AbuGe on 2016/11/21.</li>
+<li><p>B. Sub Class Factory<br>*/<br>public class PCFactory implements ComputerAbstractFactory {</p>
+<p> private String ram;<br> private String hdd;<br> private String cpu;</p>
+<p> public PCFactory(String ram, String hdd, String cpu) {</p>
+<pre><code>this.ram = ram;
+this.hdd = hdd;
+this.cpu = cpu;
+</code></pre><p> }</p>
+<p> @Override<br> public Computer createComputer() {</p>
+<pre><code>return new PC(ram, hdd, cpu);
+</code></pre><p> }<br>}</p>
+</li>
+</ul>
+<p>package designpattern.creational.abstractfactory;</p>
+<p>import designpattern.creational.factory.Computer;<br>import designpattern.creational.factory.Server;</p>
+<p>/**</p>
+<ul>
+<li><p>Created by AbuGe on 2016/11/21.<br>*/<br>public class ServerFactory implements ComputerAbstractFactory {<br> private String ram;<br> private String hdd;<br> private String cpu;</p>
+<p> public ServerFactory(String ram, String hdd, String cpu) {</p>
+<pre><code>this.ram = ram;
+this.hdd = hdd;
+this.cpu = cpu;
+</code></pre><p> }</p>
+<p> @Override<br> public Computer createComputer() {</p>
+<pre><code>return new Server(ram,hdd,cpu);
+</code></pre><p> }<br>}</p>
+</li>
+</ul>
+<p>package designpattern.creational.abstractfactory;</p>
+<p>import designpattern.creational.factory.Computer;</p>
+<p>/**</p>
+<ul>
+<li>Created by AbuGe on 2016/11/21.</li>
+<li>C. Fatory Class<br>*/<br>public class ComputerFactory {<br> public static Computer getComputer(ComputerAbstractFactory factory){<pre><code>return factory.createComputer();
+</code></pre> }<br>}</li>
+</ul>
+<p>package designpattern.creational.abstractfactory;</p>
+<p>import designpattern.creational.factory.Computer;</p>
+<p>/**</p>
+<ul>
+<li><p>Created by AbuGe on 2016/11/20.<br>*/<br>public class TestFactory {<br> public static  void  main(String[] args){</p>
+<pre><code>Computer pc = ComputerFactory.getComputer(new PCFactory(&quot;2G&quot;, &quot;500G&quot;, &quot;4GHZ&quot;));
+
+Computer server = ComputerFactory.getComputer(new ServerFactory(&quot;32G&quot;, &quot;1000G&quot;, &quot;8GHZ&quot;));
+System.out.println(&quot;get pc config from abstract factory is &quot; + pc);
+System.out.println(&quot;get server config from abstract factory is &quot; + server);
+</code></pre><p> }</p>
+</li>
+</ul>
+<p>}</p>
+<pre><code>``` 
+</code></pre><ol>
+<li><strong>Benefits</strong><ul>
+<li>面向接口编程，客户端与服务端解耦</li>
+<li>更易扩展，增加新工厂即可，与源代码无耦合</li>
+<li>更健壮，去除工厂模式的条件判断逻辑</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/creational-design-pattern/">creational design pattern</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JustCeshi" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/20/JustCeshi/" class="article-date">
+  	<time datetime="2016-11-20T14:48:52.000Z" itemprop="datePublished">2016-11-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/20/JustCeshi/">JustCeshi</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-2-工厂设计模式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -917,148 +1111,6 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/技术/">技术</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-spring-mvc-常见错误解决方法" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/10/spring-mvc-常见错误解决方法/" class="article-date">
-  	<time datetime="2016-07-10T02:13:53.000Z" itemprop="datePublished">2016-07-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/10/spring-mvc-常见错误解决方法/">spring mvc 常见错误解决方法</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="SpringMVC-RequestParam-中文乱码问题解决"><a href="#SpringMVC-RequestParam-中文乱码问题解决" class="headerlink" title="SpringMVC @RequestParam 中文乱码问题解决"></a>SpringMVC @RequestParam 中文乱码问题解决</h1><ol>
-<li><p>示例代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/result"</span>, method = RequestMethod.GET)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getResult</span><span class="params">(ModelMap map, @RequestParam String name, @RequestParam <span class="keyword">int</span> age)</span></span>&#123;</div><div class="line">map.addAttribute(<span class="string">"name"</span>, name);</div><div class="line">map.addAttribute(<span class="string">"age"</span>, age);</div><div class="line"><span class="keyword">return</span> <span class="string">"result"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>错误现象：<br><img src="http://i.imgur.com/ArSPA1z.png" alt=""></p>
-</li>
-<li><p>解决方法：修改tomcat目录下<strong>server.xml</strong>的配置（解压路径\apache-tomcat-7.0.64\conf\server.xml），增加编码格式：<br><img src="http://i.imgur.com/AtGvYsJ.png" alt=""></p>
-</li>
-<li><p>正确现象：<br><img src="http://i.imgur.com/los7ahA.png" alt=""></p>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-mvc/">spring mvc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/点滴/">点滴</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a><a class="article-category-link" href="/categories/技术/学习/">学习</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-睡前小思" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/04/睡前小思/" class="article-date">
-  	<time datetime="2016-07-04T15:00:53.000Z" itemprop="datePublished">2016-07-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/04/睡前小思/">入职一周年小感</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>　　生活中太多烦恼源于我们本性的贪婪，倘若真可以笑看庭前花开花落，生活也就轻松了。放下，认真生活远比那些浮华来的更实际。　<br>　<br><em>恐惧，深深的恐惧。谁的青春不迷茫，只是还没有拼尽全力。还不够努力…</em></p>
-<p>　　时间很快，还来不及细细体味一年的光阴转瞬即逝，走的太急，抓不住，再回首韶光不再。伏案若有所思，这一年，我很好。</p>
-<ol>
-<li>理论结合实践，编码能力提高。</li>
-<li>累过笑过，我成长了。</li>
-</ol>
-<h1 id="明年寄语给自己"><a href="#明年寄语给自己" class="headerlink" title="明年寄语给自己"></a>明年寄语给自己</h1><ol>
-<li>一专而多长</li>
-<li>心态要好</li>
-<li>大局观要有</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/为生/">为生</a>
 	</div>
 
 
