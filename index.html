@@ -74,7 +74,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -111,7 +111,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/creational-design-pattern/" style="font-size: 20px;">creational design pattern</a> <a href="/tags/creational-design-patterns/" style="font-size: 10px;">creational design patterns</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/二分法/" style="font-size: 10px;">二分法</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/彼岸/" style="font-size: 10px;">彼岸</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/点滴/" style="font-size: 10px;">点滴</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/起航/" style="font-size: 10px;">起航</a> <a href="/tags/远行/" style="font-size: 10px;">远行</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+						<a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/creational-design-pattern/" style="font-size: 20px;">creational design pattern</a> <a href="/tags/creational-design-patterns/" style="font-size: 10px;">creational design patterns</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/structure-design-patterns/" style="font-size: 15px;">structure design patterns</a> <a href="/tags/二分法/" style="font-size: 10px;">二分法</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/彼岸/" style="font-size: 10px;">彼岸</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/点滴/" style="font-size: 10px;">点滴</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/起航/" style="font-size: 10px;">起航</a> <a href="/tags/远行/" style="font-size: 10px;">远行</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
 					</div>
 				</section>
 				
@@ -194,6 +194,164 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-6-适配器模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/24/6-适配器模式/" class="article-date">
+  	<time datetime="2016-11-24T12:29:33.000Z" itemprop="datePublished">2016-11-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/24/6-适配器模式/">6.适配器模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Adapter-Desgin-Pattern"><a href="#Adapter-Desgin-Pattern" class="headerlink" title="Adapter Desgin Pattern"></a>Adapter Desgin Pattern</h1><ol>
+<li><p><strong>What</strong>  is it?</p>
+<p> 举个例子，手机充电需要3V，但是插座上提供的是220V，手机充电器就充当了适配器（转换）的角色，将220V转换成了3V供手机充电，从而将手机和插件两个不相关关的事物联系了在一起。<br> 简而言之，适配器模式就是通过一个<strong>适配器对象</strong>将A接口<strong>转换</strong>成B接口需要的形式。</p>
+</li>
+<li><p><strong>How</strong> to implemnt it?</p>
+<ul>
+<li><p>类适配， 即<strong>继承</strong>方式来包含Source类</p>
+</li>
+<li><p>对象适配， 即使用<strong>组合</strong>方式来包含Source对象</p>
+</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p><strong>Code Demo</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.structural.adapter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/24.</div><div class="line"> * A.信息类</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Volt</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> volts;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Volt</span><span class="params">(<span class="keyword">int</span> volts)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.volts = volts;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getVolts</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> volts;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setVolts</span><span class="params">(<span class="keyword">int</span> volts)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.volts = volts;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Volt&#123;"</span> +</div><div class="line">                <span class="string">"volts="</span> + volts +</div><div class="line">                <span class="string">'&#125;'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.adapter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/24.</div><div class="line"> * B.待适配类</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Socket</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Volt <span class="title">getVolt</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Volt(<span class="number">120</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.adapter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/24.</div><div class="line"> * C.适配器接口</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SocketAdapter</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Volt <span class="title">get120Volt</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Volt <span class="title">get3Volt</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Volt <span class="title">get12Volt</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.adapter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/24.</div><div class="line"> * D.适配器实现（使用继承方式）</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SocketClassAdapterImpl</span> <span class="keyword">extends</span> <span class="title">Socket</span> <span class="keyword">implements</span> <span class="title">SocketAdapter</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Volt <span class="title">get120Volt</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> getVolt();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Volt <span class="title">get3Volt</span><span class="params">()</span> </span>&#123;</div><div class="line">        Volt volt = getVolt();</div><div class="line">        <span class="keyword">return</span> convertVolt(volt, <span class="number">40</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Volt <span class="title">get12Volt</span><span class="params">()</span> </span>&#123;</div><div class="line">        Volt volt = getVolt();</div><div class="line">        <span class="keyword">return</span> convertVolt(volt, <span class="number">10</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> Volt <span class="title">convertVolt</span><span class="params">(Volt volt, <span class="keyword">int</span> standard)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Volt(volt.getVolts() / standard);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.adapter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/24.</div><div class="line"> * E.适配器实现（使用组合方式）</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SocketObjectAdapterImpl</span> <span class="keyword">implements</span> <span class="title">SocketAdapter</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Socket socket = <span class="keyword">new</span> Socket();</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Volt <span class="title">get120Volt</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> socket.getVolt();</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Volt <span class="title">get3Volt</span><span class="params">()</span> </span>&#123;</div><div class="line">        Volt volt = socket.getVolt();</div><div class="line">        <span class="keyword">return</span> convertVolt(volt,<span class="number">40</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Volt <span class="title">get12Volt</span><span class="params">()</span> </span>&#123;</div><div class="line">        Volt volt = socket.getVolt();</div><div class="line">        <span class="keyword">return</span> convertVolt(volt, <span class="number">10</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> Volt <span class="title">convertVolt</span><span class="params">(Volt volt, <span class="keyword">int</span> standard)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Volt(volt.getVolts() / standard);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.adapter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/24.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdapterPatternTest</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        objectAdapterTest();</div><div class="line">        classAdapterTest();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Volt <span class="title">getVolt</span><span class="params">(SocketAdapter adapter, <span class="keyword">int</span> standard)</span> </span>&#123;</div><div class="line">        <span class="keyword">switch</span> (standard) &#123;</div><div class="line">            <span class="keyword">case</span> <span class="number">3</span>:</div><div class="line">                <span class="keyword">return</span> adapter.get3Volt();</div><div class="line">            <span class="keyword">case</span> <span class="number">12</span>:</div><div class="line">                <span class="keyword">return</span> adapter.get12Volt();</div><div class="line">            <span class="keyword">case</span> <span class="number">120</span>:</div><div class="line">                <span class="keyword">return</span> adapter.get120Volt();</div><div class="line">            <span class="keyword">default</span>:</div><div class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">objectAdapterTest</span><span class="params">()</span> </span>&#123;</div><div class="line">        SocketAdapter adapter = <span class="keyword">new</span> SocketObjectAdapterImpl();</div><div class="line">        Volt volt3 = getVolt(adapter, <span class="number">3</span>);</div><div class="line">        Volt volt12 = getVolt(adapter, <span class="number">12</span>);</div><div class="line">        Volt volt120 = getVolt(adapter, <span class="number">120</span>);</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"volt3 using object adapter = "</span> + volt3);</div><div class="line">        System.out.println(<span class="string">"volt12 using object adapter = "</span> + volt12);</div><div class="line">        System.out.println(<span class="string">"volt120 using object adapter = "</span> + volt120);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">classAdapterTest</span><span class="params">()</span> </span>&#123;</div><div class="line">        SocketAdapter adapter = <span class="keyword">new</span> SocketClassAdapterImpl();</div><div class="line">        Volt volt3 = getVolt(adapter, <span class="number">3</span>);</div><div class="line">        Volt volt12 = getVolt(adapter, <span class="number">12</span>);</div><div class="line">        Volt volt120 = getVolt(adapter, <span class="number">120</span>);</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"volt3 using class adapter = "</span> + volt3);</div><div class="line">        System.out.println(<span class="string">"volt12 using class adapter = "</span> + volt12);</div><div class="line">        System.out.println(<span class="string">"volt120 using class adapter = "</span> + volt120);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Benefits</strong><br> 给你想要的，适配一次即可</p>
+</li>
+<li><strong>JDK Example</strong><ul>
+<li>java.util.Arrays#asList()</li>
+<li>java.io.InputStreamReader(InputStream){return Reader}</li>
+<li>java.io.OutputStreamWriter(OutputStream){return Writer}</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure-design-patterns/">structure design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Structure-Design-Pattern" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/24/Structure-Design-Pattern/" class="article-date">
+  	<time datetime="2016-11-24T12:28:14.000Z" itemprop="datePublished">2016-11-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/24/Structure-Design-Pattern/">Structure Design Pattern</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Structure-Design-Pattern"><a href="#Structure-Design-Pattern" class="headerlink" title="Structure Design Pattern"></a>Structure Design Pattern</h1><p>根据需求设计类是工作经常遇到的一个问题，说到类就必须提及其结构，前辈们将他们关于如何设计类结构总结为结构型设计模式。通常使用的方法有组合和继承，完成由小对象到大对象的构造与设计。</p>
+<p>其中有代表性的结构型设计模式有如下个：</p>
+<ol>
+<li>Adapter Design Pattern</li>
+<li>Composite Pattern</li>
+<li>Proxy Pattern</li>
+<li>Flyweight Pattern</li>
+<li>Facade Pattern</li>
+<li>Bridge Pattern</li>
+<li>Decorator Pattern</li>
+</ol>
+<p>以上模式是针对类结构设计的，理解其思想，活学活用才是正确的方法。 </p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure-design-patterns/">structure design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-5-原型模式" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -942,154 +1100,6 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/LeetCode-OJ/">LeetCode OJ</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-常用网址" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/09/常用网址/" class="article-date">
-  	<time datetime="2016-09-09T14:30:06.000Z" itemprop="datePublished">2016-09-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/09/常用网址/">常用网址</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://leetcode.com/" target="_blank" rel="external">https://leetcode.com/</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-小酌Java数据类型" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/08/小酌Java数据类型/" class="article-date">
-  	<time datetime="2016-09-08T14:28:41.000Z" itemprop="datePublished">2016-09-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/08/小酌Java数据类型/">小酌Java数据类型</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>常量（不能改变的数值）</p>
-<ol>
-<li><p>整数常量 –&gt; 所有整数，如（1,2,3…）</p>
-<ul>
-<li><p>整数表现形式：</p>
-<ul>
-<li>十进制 0-9，满十进一</li>
-<li>八进制 0-7，满8进一，0开头（一个八进制位表示三个二进制位（不同0,1的排列组合)）</li>
-<li>十六进制 0-9，A-F，满16进一，0x开头（一个十六进制位表示四个二进制位（不同0,1的排列组合)）</li>
-<li>二进制 0-1</li>
-</ul>
-</li>
-<li><p>自动类型提升</p>
-</li>
-<li>强制类型转换<br>PS:一个字节 = 8bit，就是八个二进制位，不同0,1的排列组合对应不同数据（映射对应），从而形成了编码表（如ascii表）</li>
-</ul>
-</li>
-<li><p>小数常量 –&gt; 所有小数，如(1.1, 1.23,1.345…)</p>
-</li>
-<li>布尔常量 –&gt; 只有两个值(true, false)</li>
-<li>字符常量（数字和符号常量） –&gt; 单个数字、字母或者符号用单引号标识，(‘a’, ‘b’, ‘*’, ‘1’, ‘2’, ‘3’)</li>
-<li>字符串常量 –&gt; （”hello world”, “a”, “”）</li>
-<li>null常量 –&gt; 只有一个值（null）</li>
-</ol>
-</li>
-</ol>
-<ol>
-<li>变量</li>
-<li>数据类型<ul>
-<li>基本数据类型</li>
-<li>引用数据类型 </li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据类型/">数据类型</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术/">技术</a><a class="article-category-link" href="/categories/技术/基础知识/">基础知识</a>
 	</div>
 
 
