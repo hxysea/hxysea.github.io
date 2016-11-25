@@ -74,7 +74,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -194,6 +194,92 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-7-组合模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/25/7-组合模式/" class="article-date">
+  	<time datetime="2016-11-25T13:36:52.000Z" itemprop="datePublished">2016-11-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/25/7-组合模式/">7.组合模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Composite-Pattern"><a href="#Composite-Pattern" class="headerlink" title="Composite Pattern"></a>Composite Pattern</h1><ol>
+<li><strong>What</strong> is it?</li>
+</ol>
+<p>如果需求中涉及的一组对象具有公共操作，则可将公共操作进一步抽象为接口或抽象类，如果又需要将一组对象作为一个整体操作，则可设计一个组合类封装这组类的集合并实现公共操作方法（即上一步产生的接口或抽象类）。由此，诞生了组合模式。</p>
+<ol>
+<li><p><strong>How</strong> to implement it?</p>
+<ul>
+<li>Base Component，抽象公共操作，可以设计为接口或抽象类</li>
+<li>Leaf 各个独立的对象，实现或继承Base Component</li>
+<li>Composite 实现Base Component，包含Leaf集合</li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.structural.composite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/25.</div><div class="line"> * A.Base Component</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(String fillColor)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.composite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/25.</div><div class="line"> * B.Leaf Objects</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Triangle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(String fillColor)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Drwing triangle withe color "</span> + fillColor);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">package</span> designpattern.structural.composite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/25.</div><div class="line"> * A.Base Component</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(String fillColor)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.composite;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/25.</div><div class="line"> * C.Composite Object</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Composite</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;Shape&gt; shapes = <span class="keyword">new</span> ArrayList&lt;Shape&gt;();</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(String fillColor)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(Shape sh : shapes)&#123;</div><div class="line">            sh.draw(fillColor);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Shape s)</span></span>&#123;</div><div class="line">        shapes.add(s);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Shape s)</span></span>&#123;</div><div class="line">        shapes.remove(s);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clearAll</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Clearing all the shapes from drawing."</span>);</div><div class="line">        shapes.clear();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.composite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/25.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompositePatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        Composite composite = <span class="keyword">new</span> Composite();</div><div class="line"></div><div class="line">        Shape triangle = <span class="keyword">new</span> Triangle();</div><div class="line">        Shape circle = <span class="keyword">new</span> Circle();</div><div class="line">        composite.add(triangle);</div><div class="line">        composite.add(circle);</div><div class="line"></div><div class="line">        composite.draw(<span class="string">"RED"</span>);</div><div class="line"></div><div class="line">        composite.clearAll();</div><div class="line"></div><div class="line">        composite.add(triangle);</div><div class="line">        composite.add(circle);</div><div class="line"></div><div class="line">        composite.draw(<span class="string">"GREEN"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Important Points</strong></p>
+<ul>
+<li>适用于将一组具有公共操作的对象作为一个对象的场景</li>
+<li>适用于类关系具有树形结构的特点的场景 </li>
+</ul>
+</li>
+<li><strong>JDK Example</strong><ul>
+<li>java.awt.Container#add(Component) </li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure-design-patterns/">structure design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-6-适配器模式" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -998,106 +1084,6 @@
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Sort-List" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/12/Sort-List/" class="article-date">
-  	<time datetime="2016-09-12T13:52:58.000Z" itemprop="datePublished">2016-09-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/12/Sort-List/">Sort List</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><ul>
-<li>Sort a linked list in O(n log n) time using constant space complexity.</li>
-</ul>
-<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><ol>
-<li><p>需要做什么？（<strong>定义问题</strong>）</p>
-<ul>
-<li>首先看一下ListNode的定义：</li>
-<li>了解到什么(问题域)：<ul>
-<li>一个链表节点包含一个int的成员变量val和一个链表引用next，通过此next引用构成一个链表。</li>
-<li>对此链表排序的排序基准即为val这个成员变量</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>怎么做？</p>
-<ul>
-<li><p><strong>设计算法</strong></p>
-<ul>
-<li><p>链表排序问题转换为其他数据结构排序实现</p>
-</li>
-<li><p>重构链表之间的关系</p>
-</li>
-<li><p>算法详情：</p>
-<ol>
-<li>遍历链表节点将链表节点存储在数组中</li>
-<li>根据val变量的大小将数组排序</li>
-<li>遍历数组重构链表的先后关系，最后一个节点指向null</li>
-<li>返回head节点</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p><strong>选择数据结构</strong></p>
-<ul>
-<li>使用数组存储链表节点</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    ListNode next;</div><div class="line">    ListNode(<span class="keyword">int</span> x) &#123;</div><div class="line">        val = x;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * Created by AbuGe on 2016/9/11.</div><div class="line">	 */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 链表节点排序</div><div class="line">	 * 1.获取链表长度len，定义数组大小为len； </div><div class="line">	 * 2.遍历链表，填充数组 </div><div class="line">	 * 3.将链表数组排序 </div><div class="line">	 * 4.重构链表节点关系</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> head</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> ListNode <span class="title">sortList</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> len = getListLen(head);</div><div class="line">		<span class="keyword">if</span> (len &gt; <span class="number">0</span>) &#123;</div><div class="line">			ListNode[] listNodes = <span class="keyword">new</span> ListNode[len];</div><div class="line"></div><div class="line">			paddingArray(listNodes, head);</div><div class="line"></div><div class="line">			mergeSort(listNodes, <span class="number">0</span>, len - <span class="number">1</span>);</div><div class="line"></div><div class="line">			restructList(listNodes, len);</div><div class="line"></div><div class="line">			head = listNodes[<span class="number">0</span>];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> head;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 获取链表长度</div><div class="line">	 *</div><div class="line">	 * <span class="doctag">@param</span> head</div><div class="line">	 * <span class="doctag">@return</span></div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getListLen</span><span class="params">(ListNode head)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (<span class="keyword">null</span> == head) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line">		<span class="keyword">while</span> (<span class="keyword">null</span> != head) &#123;</div><div class="line">			++len;</div><div class="line">			head = head.next;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> len;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 填充数组节点</div><div class="line">	 *</div><div class="line">	 * <span class="doctag">@param</span> listNodes</div><div class="line">	 * <span class="doctag">@param</span> head</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paddingArray</span><span class="params">(ListNode[] listNodes, ListNode head)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">		<span class="keyword">while</span> (<span class="keyword">null</span> != head) &#123;</div><div class="line">			listNodes[i] = head;</div><div class="line">			head = head.next;</div><div class="line">			++i;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 使用归并法对数组排序</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> listNodes</div><div class="line">	 * <span class="doctag">@param</span> l</div><div class="line">	 * <span class="doctag">@param</span> r</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(ListNode[] listNodes, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (l &gt;= r) &#123;</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">int</span> mid = (l + r) / <span class="number">2</span>;</div><div class="line"></div><div class="line">		mergeSort(listNodes, l, mid);</div><div class="line">		mergeSort(listNodes, mid + <span class="number">1</span>, r);</div><div class="line"></div><div class="line">		<span class="comment">// 褰掑苟</span></div><div class="line">		sortArray(listNodes, l, mid, r);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 数组排序</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> listNodes</div><div class="line">	 * <span class="doctag">@param</span> l</div><div class="line">	 * <span class="doctag">@param</span> mid</div><div class="line">	 * <span class="doctag">@param</span> r</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortArray</span><span class="params">(ListNode[] listNodes, <span class="keyword">int</span> l, <span class="keyword">int</span> mid, <span class="keyword">int</span> r)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> lIndex = l;</div><div class="line">		<span class="keyword">int</span> rIndex = mid + <span class="number">1</span>;</div><div class="line"></div><div class="line">		ListNode[] result = <span class="keyword">new</span> ListNode[r - l + <span class="number">1</span>];</div><div class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">		<span class="keyword">while</span> (lIndex &lt;= mid &amp;&amp; rIndex &lt;= r) &#123;</div><div class="line">			<span class="keyword">if</span> (listNodes[lIndex].val &lt; listNodes[rIndex].val) &#123;</div><div class="line">				result[i] = listNodes[lIndex];</div><div class="line">				lIndex++;</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				result[i] = listNodes[rIndex];</div><div class="line">				rIndex++;</div><div class="line">			&#125;</div><div class="line">			i++;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">while</span> (lIndex &lt;= mid) &#123;</div><div class="line">			result[i] = listNodes[lIndex];</div><div class="line">			lIndex++;</div><div class="line">			i++;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">while</span> (rIndex &lt;= r) &#123;</div><div class="line">			result[i] = listNodes[rIndex];</div><div class="line">			rIndex++;</div><div class="line">			i++;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>, i1 = l; i1 &lt;= r; i1++, k++) &#123;</div><div class="line">			listNodes[i1] = result[k];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 重构链表间的关系</div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@param</span> listNodes</div><div class="line">	 * <span class="doctag">@param</span> len</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">restructList</span><span class="params">(ListNode[] listNodes, <span class="keyword">int</span> len)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (<span class="keyword">null</span> != listNodes) &#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</div><div class="line">				listNodes[i].next = listNodes[i + <span class="number">1</span>];</div><div class="line">			&#125;</div><div class="line"></div><div class="line">			listNodes[len - <span class="number">1</span>].next = <span class="keyword">null</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分法/">二分法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/归并排序/">归并排序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/递归/">递归</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/LeetCode-OJ/">LeetCode OJ</a>
 	</div>
 
 
