@@ -195,6 +195,91 @@
 
       <div class="body-wrap">
   
+    <article id="post-8-代理模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/26/8-代理模式/" class="article-date">
+  	<time datetime="2016-11-26T11:17:30.000Z" itemprop="datePublished">2016-11-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/26/8-代理模式/">8.代理模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Proxy-Pattern"><a href="#Proxy-Pattern" class="headerlink" title="Proxy Pattern"></a>Proxy Pattern</h1><ol>
+<li><p><strong>What</strong> is it?</p>
+<p> 如果需要控制客户端的访问，使客户端不能直接对服务端进行恶意操作或误操作。则可以在客户端与服务端中间增加一层防护或者过滤，这就是代理模式的核心思想。使用服务端的代理为客户端服务从而起到保护服务端的作用，同时也可以在一定程度上提高性能，只提供客户端需要的功能，减少暴露过多的信息。</p>
+</li>
+<li><p><strong>How</strong> to implement it?</p>
+<ul>
+<li>目标接口</li>
+<li>目标实现</li>
+<li>代理实现，代理实现目标接口且增加额外逻辑</li>
+</ul>
+</li>
+<li><p><strong>Code　Demo</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.structural.proxy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/26.</div><div class="line"> * A. Main Class</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CommandExecutor</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">runCommand</span><span class="params">(String cmd)</span> <span class="keyword">throws</span> Exception</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.proxy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/26.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommandExecutorImpl</span> <span class="keyword">implements</span> <span class="title">CommandExecutor</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runCommand</span><span class="params">(String cmd)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        Runtime.getRuntime().exec(cmd);</div><div class="line">        System.out.println(<span class="string">"'"</span>+cmd + <span class="string">"' command executed."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.proxy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/26</div><div class="line"> * B.Proxy Class</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommandExecoutorProxy</span> <span class="keyword">implements</span> <span class="title">CommandExecutor</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isAdmin;</div><div class="line">    <span class="keyword">private</span> CommandExecutor commandExecutor;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CommandExecoutorProxy</span><span class="params">(String name, String pwd)</span> </span>&#123;</div><div class="line">        isAdmin = checkUser(name, pwd);</div><div class="line">        commandExecutor = <span class="keyword">new</span> CommandExecutorImpl();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">checkUser</span><span class="params">(String name, String pwd)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="string">"admin"</span>.equals(name) &amp;&amp; <span class="string">"12345"</span>.equals(pwd))&#123;</div><div class="line">            <span class="keyword">return</span>  <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runCommand</span><span class="params">(String cmd)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (isAdmin)&#123;</div><div class="line"></div><div class="line">            commandExecutor.runCommand(cmd);</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (cmd.trim().contains(<span class="string">"rm"</span>))&#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"rm cmd is not allowed for non-admin user"</span>);</div><div class="line">            &#125;<span class="keyword">else</span> &#123;</div><div class="line">                commandExecutor.runCommand(cmd);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.proxy;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/26.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyPatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        CommandExecutor execuortor = <span class="keyword">new</span> CommandExecoutorProxy(<span class="string">"admin"</span>, <span class="string">"wrong pwd"</span>);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            execuortor.runCommand(<span class="string">"cmd.exe dir"</span>);</div><div class="line">            execuortor.runCommand(<span class="string">"cmd.exe rm -rf abc.pdf "</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            System.out.println(e);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Benefits</strong></p>
+<ul>
+<li>控制访问</li>
+<li>包装实现，提高性能</li>
+</ul>
+</li>
+<li><strong>JDK Example</strong><ul>
+<li>java.rmi.*</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure-design-patterns/">structure design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-7-组合模式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -993,91 +1078,6 @@
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/creational-design-pattern/">creational design pattern</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-品读设计模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/29/品读设计模式/" class="article-date">
-  	<time datetime="2016-10-29T12:55:13.000Z" itemprop="datePublished">2016-10-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/29/品读设计模式/">品读设计模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h1><p>设计模式源起现实生活，譬如建筑设计师想要建造一栋建筑，他们会参照以往的图纸或者建造方法来绘制新建筑的图纸。将建筑师们所参照的这些图纸以及设计归纳总结乃至升华出来的一种针对某一类问题解决方案的设计思想与理念就是我们熟知的设计模式。</p>
-<p>软件开发中的设计模式则是一套针对某一问题的一套设计良好的解决方案，是前辈们的心血与结晶。其优点有三：</p>
-<ol>
-<li><p>可以大大缩短开发时间</p>
-<ul>
-<li>经过良好的设计以及实践检验</li>
-<li>是一套标准的解决方法</li>
-<li>针对类似的问题行之有效</li>
-</ul>
-</li>
-<li><p>减少开发成本</p>
-<ul>
-<li>提高代码可复用性</li>
-<li>提高健壮性</li>
-<li>提高可维护性</li>
-</ul>
-</li>
-<li><p>提高可交流性</p>
-<ul>
-<li>经过良好定义，易于理解和调试</li>
-<li>团队新成员更容易理解代码结构及上手</li>
-</ul>
-</li>
-</ol>
-<p>根据设计意图分为Creational（建造型）、Structral（结构型）、Behavioral（行为型）三种。使用设计模式的精髓在于学习与借鉴而不是一味的照搬，只有真正理解其设计意图，进而融汇贯通，方位真正领悟。  </p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
 	</div>
 
       
