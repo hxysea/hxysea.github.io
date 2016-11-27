@@ -107,7 +107,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/creational-design-pattern/" style="font-size: 20px;">creational design pattern</a> <a href="/tags/creational-design-patterns/" style="font-size: 10px;">creational design patterns</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/structure-design-patterns/" style="font-size: 15px;">structure design patterns</a> <a href="/tags/二分法/" style="font-size: 10px;">二分法</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/彼岸/" style="font-size: 10px;">彼岸</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/点滴/" style="font-size: 10px;">点滴</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/起航/" style="font-size: 10px;">起航</a> <a href="/tags/远行/" style="font-size: 10px;">远行</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+						<a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/creational-design-pattern/" style="font-size: 20px;">creational design pattern</a> <a href="/tags/creational-design-patterns/" style="font-size: 10px;">creational design patterns</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/structure-design-patterns/" style="font-size: 20px;">structure design patterns</a> <a href="/tags/二分法/" style="font-size: 10px;">二分法</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/彼岸/" style="font-size: 10px;">彼岸</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/点滴/" style="font-size: 10px;">点滴</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/起航/" style="font-size: 10px;">起航</a> <a href="/tags/远行/" style="font-size: 10px;">远行</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
 					</div>
 				</section>
 				
@@ -186,6 +186,94 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-9-轻量级模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/27/9-轻量级模式/" class="article-date">
+  	<time datetime="2016-11-27T14:41:06.000Z" itemprop="datePublished">2016-11-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/27/9-轻量级模式/">9.轻量级模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Flyweight-Pattern"><a href="#Flyweight-Pattern" class="headerlink" title="Flyweight Pattern"></a>Flyweight Pattern</h1><ol>
+<li><p><strong>What</strong> is it?</p>
+<p> 如果需求环境内存受限（比如手机和嵌入式设备），而且创建对象比较耗内存且创建时间较长，则可提前创建好以供复用。线程池、数据库连接池以及字符串池都是其思想的应用，简而言之，将所需对象提前创建好以供共享使用即为轻量级模式。</p>
+</li>
+<li><p><strong>How</strong> to implement it?</p>
+<ul>
+<li>分离目标对象属性，分为外部标识属性和对象本征属性。</li>
+<li>设计目标对象接口及实现</li>
+<li>设计工厂类，提供根据对象外部标识属性获取目标对象方法</li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.structural.flyweight;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.awt.*;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/27.</div><div class="line"> * A.轻量级对象接口</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(Graphics graphics, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> height, <span class="keyword">int</span> width, Color color)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.flyweight;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.awt.*;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/27.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Line</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(Graphics graphics, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> height, <span class="keyword">int</span> width, Color color)</span> </span>&#123;</div><div class="line">        graphics.setColor(color);</div><div class="line">        graphics.drawLine(x, y, height, width);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Line</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Creating Line Object..."</span>);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Thread.sleep(<span class="number">2000</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.flyweight;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.awt.*;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/27.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Oval</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span>  <span class="keyword">boolean</span> isfill;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Oval</span><span class="params">(<span class="keyword">boolean</span> isfill)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.isfill = isfill;</div><div class="line">        System.out.println(<span class="string">"Creating Oval Object with fill = "</span> + isfill);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Thread.sleep(<span class="number">2000</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(Graphics graphics, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> height, <span class="keyword">int</span> width, Color color)</span> </span>&#123;</div><div class="line"></div><div class="line">        graphics.setColor(color);</div><div class="line">        graphics.drawOval(x, y, width, height);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (isfill)&#123;</div><div class="line">            graphics.fillOval(x, y, width, height);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.flyweight;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/27.</div><div class="line"> * B. Flyweight Factory</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;ShapeType, Shape&gt; shapes = <span class="keyword">new</span> HashMap&lt;ShapeType, Shape&gt;();</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">enum</span> ShapeType &#123;</div><div class="line">        OVAL_FILL, OVAL_NOFILL, LINE;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Shape <span class="title">getShape</span><span class="params">(ShapeType type)</span> </span>&#123;</div><div class="line">        Shape shape = shapes.get(type);</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == shape) &#123;</div><div class="line">            <span class="keyword">switch</span> (type) &#123;</div><div class="line">                <span class="keyword">case</span> OVAL_FILL:</div><div class="line">                    shape = <span class="keyword">new</span> Oval(<span class="keyword">true</span>);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> OVAL_NOFILL:</div><div class="line">                    shape = <span class="keyword">new</span> Oval(<span class="keyword">false</span>);</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">case</span> LINE:</div><div class="line">                    shape = <span class="keyword">new</span> Line();</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                <span class="keyword">default</span>:</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">            &#125;</div><div class="line">            shapes.put(type, shape);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> shape;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.flyweight;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.swing.*;</div><div class="line"><span class="keyword">import</span> java.awt.*;</div><div class="line"><span class="keyword">import</span> java.awt.event.ActionEvent;</div><div class="line"><span class="keyword">import</span> java.awt.event.ActionListener;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/27.</div><div class="line"> * C. Flyweight Pattern Client Example</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DrawingClient</span> <span class="keyword">extends</span> <span class="title">JFrame</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> WIDTH;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> HEIGHT;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ShapeFactory.ShapeType[] tyepes = &#123;ShapeFactory.ShapeType.LINE, ShapeFactory.ShapeType.OVAL_FILL, ShapeFactory.ShapeType.OVAL_NOFILL&#125;;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Color[] colors = &#123;Color.RED, Color.YELLOW, Color.GREEN&#125;;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DrawingClient</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.WIDTH = width;</div><div class="line">        <span class="keyword">this</span>.HEIGHT = height;</div><div class="line"></div><div class="line">        Container contentPane = getContentPane();</div><div class="line">        JButton startButton = <span class="keyword">new</span> JButton(<span class="string">"Draw"</span>);</div><div class="line">        <span class="keyword">final</span> JPanel panel = <span class="keyword">new</span> JPanel();</div><div class="line">        contentPane.add(panel, BorderLayout.CENTER);</div><div class="line">        contentPane.add(startButton, BorderLayout.SOUTH);</div><div class="line">        setSize(WIDTH, HEIGHT);</div><div class="line">        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</div><div class="line">        setVisible(<span class="keyword">true</span>);</div><div class="line">        startButton.addActionListener(<span class="keyword">new</span> ActionListener() &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent event)</span> </span>&#123;</div><div class="line">                Graphics g = panel.getGraphics();</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; ++i) &#123;</div><div class="line">                    Shape shape =</div><div class="line">                            ShapeFactory.getShape(getRandomShape());</div><div class="line">                    shape.draw(g, getRandomX(), getRandomY(),</div><div class="line">                            getRandomHeight(), getRandomWidth(),</div><div class="line">                            getRandomColor());</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> ShapeFactory.<span class="function">ShapeType <span class="title">getRandomShape</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> tyepes[(<span class="keyword">int</span>) (Math.random() * tyepes.length)];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getRandomX</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (Math.random() * WIDTH);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getRandomY</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (Math.random() * HEIGHT);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getRandomWidth</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (Math.random() * (WIDTH / <span class="number">10</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getRandomHeight</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (Math.random() * (HEIGHT / <span class="number">10</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> Color <span class="title">getRandomColor</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> colors[(<span class="keyword">int</span>) (Math.random() * colors.length)];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        DrawingClient drawing = <span class="keyword">new</span> DrawingClient(<span class="number">500</span>, <span class="number">600</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Important Points</strong></p>
+<ul>
+<li>根据需求，强制客户端使用轻量级工厂创建对象</li>
+<li>根据需求对创建对象的时间和空间进行折中考虑</li>
+<li>不适用于目标对象本征属性过多的情况，因为会增加创建复杂性</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><strong>JDK Example</strong><ul>
+<li>wrapper Class#valueOf()，如Integer的valueOf方法</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure-design-patterns/">structure design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-8-代理模式" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -902,174 +990,6 @@
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/creational-design-patterns/">creational design patterns</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-1-说说单例那点事" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/29/1-说说单例那点事/" class="article-date">
-  	<time datetime="2016-10-29T13:00:34.000Z" itemprop="datePublished">2016-10-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/29/1-说说单例那点事/">1.说说单例那点事</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Singleton-Design-Pattern"><a href="#Singleton-Design-Pattern" class="headerlink" title="Singleton Design Pattern"></a>Singleton Design Pattern</h1><ol>
-<li><p><strong>What</strong> is it?<br>单例也就是单实例，也就是JVM中只存在一个某类对象，且对外提供一个获取该对象的方法。</p>
-</li>
-<li><p><strong>Where</strong> you can use it?<br>单例使用场景众多，如日志记录对象、JDBC驱动对象 、缓存对象、线程池对象等。在JDK的核心类库中， java.lang.Runtime, java.awt.Desktop等为单例对象，并且 AbstractFactory, Builder, Prototype, Facade等设计模式中也使用单例对象（使用单例模式的思想，也就是融会贯通）。</p>
-</li>
-<li><p><strong>How</strong> to implement it?</p>
-<ul>
-<li><p>private constructor method</p>
-<ul>
-<li>禁止外部创建对象</li>
-</ul>
-</li>
-<li><p>private static this class instance variable</p>
-<ul>
-<li>存储该类唯一的对象</li>
-</ul>
-</li>
-<li><p>public method to get this class instance</p>
-<ul>
-<li>提供给外部获取该单例对象的方法</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Code Demo</strong></p>
-</li>
-</ol>
-<ul>
-<li>Eager Initialization<ul>
-<li>Class加载时对象已经创建，缺点是无论Client是否使用，对象已经创建</li>
-<li>无异常处理</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EagerInitializedSingleton</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">EagerInitializedSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> EagerInitializedSingleton instance = <span class="keyword">new</span> EagerInitializedSingleton();</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> EagerInitializedSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Static block initialization<ul>
-<li>增加异常处理</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticBlockSingleton</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">StaticBlockSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> StaticBlockSingleton instance;</div><div class="line"></div><div class="line">    <span class="keyword">static</span> &#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            instance = <span class="keyword">new</span> StaticBlockSingleton();</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"exception occured in careating singleton instance."</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StaticBlockSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Lazy Initialization<ul>
-<li>优点是Client使用时才创建实例</li>
-<li>缺点是线程不安全</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyInitializedSingletonLazyInitializedSingleton</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazyInitializedSingletonLazyInitializedSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> LazyInitializedSingletonLazyInitializedSingleton instance;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazyInitializedSingletonLazyInitializedSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            instance = <span class="keyword">new</span> LazyInitializedSingletonLazyInitializedSingleton();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Thread Safe Sigleton<ul>
-<li>Client使用时创建</li>
-<li>线程安全</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadSafeSingleton</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">ThreadSafeSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ThreadSafeSingleton instance;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">static</span> ThreadSafeSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == instance) &#123;</div><div class="line">            instance = <span class="keyword">new</span> ThreadSafeSingleton();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>双锁校验Thread Safe Singleton<ul>
-<li>只有第一次创建时使用锁</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span>  ThreadSafeSingleton <span class="title">getInstanceUsingDoubleLocking</span><span class="params">()</span></span>&#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">null</span> == instance)&#123;</div><div class="line">          <span class="keyword">synchronized</span> (ThreadSafeSingleton.class)&#123;</div><div class="line">              <span class="keyword">if</span> (<span class="keyword">null</span> == instance)&#123;</div><div class="line">                  instance = <span class="keyword">new</span> ThreadSafeSingleton();</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> instance;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Bill Pugh Singleton Implementation<ul>
-<li>使用静态内部类，无需同步锁</li>
-<li>线程安全</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BillPughSingleton</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">BillPughSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHelper</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> BillPughSingleton INSTANCE = <span class="keyword">new</span> BillPughSingleton();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BillPughSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> SingletonHelper.INSTANCE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>Using Reflection to destroy Singleton Pattern</p>
-<ul>
-<li>通过反射可以破坏单例，创建新对象</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionSingletonTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        EagerInitializedSingleton instanceOne = EagerInitializedSingleton.getInstance();</div><div class="line">        EagerInitializedSingleton instanceTwo = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Constructor[] constructors = EagerInitializedSingleton.class.getDeclaredConstructors();</div><div class="line">            <span class="keyword">for</span> (Constructor construtor : constructors) &#123;</div><div class="line">                construtor.setAccessible(<span class="keyword">true</span>);</div><div class="line">                instanceTwo = (EagerInitializedSingleton) construtor.newInstance();</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        System.out.println(instanceOne.hashCode());</div><div class="line">        System.out.println(instanceTwo.hashCode());</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Enum Singleton<ul>
-<li>不灵活</li>
-<li>不支持懒加载</li>
-<li>解决反射破坏单例的问题</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EnumSingleton &#123;</div><div class="line">    INSTANCE;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>Serialization and Singleton<ul>
-<li>反序列化时获取的是新对象</li>
-<li>instanceOne hashCode = 17030099</li>
-<li>instanceTwo hashCode = 3615232</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SerializedSingleton</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">4535403786288899650L</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SerializedSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHelper</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SerializedSingleton INSTANCE = <span class="keyword">new</span> SerializedSingleton();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SerializedSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> SingletonHelper.INSTANCE;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonSerializedTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SerializedSingleton instanceOne = SerializedSingleton.getInstance();</div><div class="line"></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            ObjectOutput out = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"filename.ser"</span>));</div><div class="line">            out.writeObject(instanceOne);</div><div class="line"></div><div class="line">            ObjectInput in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"filename.ser"</span>));</div><div class="line">            SerializedSingleton instanceTwo = (SerializedSingleton) in.readObject();</div><div class="line"></div><div class="line">            System.out.println(<span class="string">"instanceOne hashCode = "</span> + instanceOne.hashCode());</div><div class="line">            System.out.println(<span class="string">"instanceTwo hashCode = "</span> + instanceTwo.hashCode());</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>序列化破坏单例问题解决方法<ul>
-<li>增加方法readResolve(反序列化时会调用)</li>
-<li>反序列化时读取的是单例对象不会重新创建新对象</li>
-<li>instanceOne hashCode = 17030099</li>
-<li>instanceTwo hashCode = 17030099</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SerializedSingleton</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">4535403786288899650L</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SerializedSingleton</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHelper</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SerializedSingleton INSTANCE = <span class="keyword">new</span> SerializedSingleton();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SerializedSingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> SingletonHelper.INSTANCE;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">readResolve</span><span class="params">()</span></span>&#123;</div><div class="line">       <span class="keyword">return</span> getInstance();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/creational-design-pattern/">creational design pattern</a></li></ul>
 	</div>
 
       
