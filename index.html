@@ -74,7 +74,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>A propos</li>
 						
 					</ul>
 				</div>
@@ -186,6 +186,106 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-14-中介者模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/05/14-中介者模式/" class="article-date">
+  	<time datetime="2016-12-05T12:56:54.000Z" itemprop="datePublished">2016-12-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/05/14-中介者模式/">14.中介者模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Mediator-Pattern"><a href="#Mediator-Pattern" class="headerlink" title="Mediator Pattern"></a>Mediator Pattern</h1><ol>
+<li><strong>What</strong> is it?<ul>
+<li>中介的概念在生活中很普遍，比如租房中介。租房中介在租客与房东之间建立了联系，租客通过中介与房东取得了联系，房东通过中介寻找租客。</li>
+<li>在企业应用中，如果多个对象之间需要通信，如果是对象与对象之间直接交互和通信，造成的结果就是多个对象之间紧耦合在一起。此时，引入中介的概念则是明智之举。通俗来说，就是创建一个对象充当中介的角色，对象通过中介通信，而不是对象直接通信。</li>
+<li>飞机调度中心充当也是一个中介的角色，飞行员与调度中心通信，调度中心为其规划合适路线，调度中心再通知其它飞机。</li>
+</ul>
+</li>
+<li><p><strong>How</strong> to implement it?<br> 群组聊天的例子实现：</p>
+<ul>
+<li>定义中介者接口，定义通信方法</li>
+<li>定义需要通信的接口</li>
+<li>定义中介者实现</li>
+<li>定义通信实现</li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong><br> A. Mediator Interface</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.mediator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/5.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ChartMediator</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">(String msg, User user)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">(User user)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> B. Colleague Interface</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.mediator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/5.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> ChartMediator mediator;</div><div class="line">    <span class="keyword">public</span> String name;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(ChartMediator mediator, String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.mediator = mediator;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span>  <span class="title">send</span><span class="params">(String msg)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">receive</span><span class="params">(String msg)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> C. Concrete Mediator</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.mediator;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/5.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChartMediatorImpl</span> <span class="keyword">implements</span> <span class="title">ChartMediator</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;User&gt; users;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ChartMediatorImpl</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.users = <span class="keyword">new</span> ArrayList&lt;User&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsers</span><span class="params">(List&lt;User&gt; users)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.users = users;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">(String msg, User user)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (User element : users) &#123;</div><div class="line">            <span class="keyword">if</span> (user != element) &#123;</div><div class="line">                element.receive(msg);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">        users.add(user);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> C. Concrete Colleague</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.mediator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/5.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserImpl</span> <span class="keyword">extends</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserImpl</span><span class="params">(ChartMediator mediator, String name)</span></span>&#123;</div><div class="line">        <span class="keyword">super</span>(mediator, name);</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(String msg)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="keyword">this</span>.name + <span class="string">" sent message "</span> + msg);</div><div class="line">        mediator.sendMessage(msg, <span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receive</span><span class="params">(String msg)</span> </span>&#123;</div><div class="line"></div><div class="line">        System.out.println(<span class="keyword">this</span>.name + <span class="string">" received msg: "</span> + msg);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> D. Mediator Pattern Client</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.mediator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/5.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MediatorPatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        ChartMediator chartMediator = <span class="keyword">new</span> ChartMediatorImpl();</div><div class="line"></div><div class="line">        User abu = <span class="keyword">new</span> UserImpl(chartMediator, <span class="string">"abu"</span>);</div><div class="line">        User yoyo = <span class="keyword">new</span> UserImpl(chartMediator, <span class="string">"yoyo"</span>);</div><div class="line">        User anan = <span class="keyword">new</span> UserImpl(chartMediator, <span class="string">"anan"</span>);</div><div class="line"></div><div class="line">        chartMediator.addUser(abu);</div><div class="line">        chartMediator.addUser(yoyo);</div><div class="line">        chartMediator.addUser(anan);</div><div class="line"></div><div class="line">        abu.send(<span class="string">"Hi, Everyone!"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>JDK Example</strong></p>
+<ul>
+<li>java.util.scheduleXXX（）方法</li>
+<li>java.util.concurrent.execute()方法</li>
+<li>java.lang.reflect.Method.invoke()方法</li>
+</ul>
+</li>
+<li><strong>Important Points</strong><ul>
+<li>中介者模式适用于多个对象之间通信复杂的情况，使用中介对象实现通信逻辑，从而达到解耦和易扩展的功能</li>
+<li>JMS使用中介者模式结合观察者模式来实现应用订阅和发布数据给其他数据的功能</li>
+<li>如果仅仅为了解耦使用中介者模式会造成中介者越来越多，也越来越难维护。此种情况，不建议使用中介者模式 </li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-13-模板方法模式" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -919,78 +1019,6 @@
 </ul>
 </li>
 </ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure-design-patterns/">structure design patterns</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Structure-Design-Pattern" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/24/Structure-Design-Pattern/" class="article-date">
-  	<time datetime="2016-11-24T12:28:14.000Z" itemprop="datePublished">2016-11-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/24/Structure-Design-Pattern/">Structure Design Pattern</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Structure-Design-Pattern"><a href="#Structure-Design-Pattern" class="headerlink" title="Structure Design Pattern"></a>Structure Design Pattern</h1><p>根据需求设计类是工作经常遇到的一个问题，说到类就必须提及其结构，前辈们将他们关于如何设计类结构总结为结构型设计模式。通常使用的方法有组合和继承，完成由小对象到大对象的构造与设计。</p>
-<p>其中有代表性的结构型设计模式有如下个：</p>
-<ol>
-<li>Adapter Design Pattern</li>
-<li>Composite Pattern</li>
-<li>Proxy Pattern</li>
-<li>Flyweight Pattern</li>
-<li>Facade Pattern</li>
-<li>Bridge Pattern</li>
-<li>Decorator Pattern</li>
-</ol>
-<p>以上模式是针对类结构设计的，理解其思想，活学活用才是正确的方法。 </p>
 
       
     </div>
