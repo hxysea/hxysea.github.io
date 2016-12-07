@@ -74,7 +74,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>A propos</li>
 						
 					</ul>
 				</div>
@@ -107,7 +107,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/behavioral-design-patterns/" style="font-size: 13.33px;">behavioral design patterns</a> <a href="/tags/creational-design-pattern/" style="font-size: 16.67px;">creational design pattern</a> <a href="/tags/creational-design-patterns/" style="font-size: 10px;">creational design patterns</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/structure-design-patterns/" style="font-size: 20px;">structure design patterns</a> <a href="/tags/二分法/" style="font-size: 10px;">二分法</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/彼岸/" style="font-size: 10px;">彼岸</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/点滴/" style="font-size: 10px;">点滴</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/起航/" style="font-size: 10px;">起航</a> <a href="/tags/远行/" style="font-size: 10px;">远行</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+						<a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/behavioral-design-patterns/" style="font-size: 15px;">behavioral design patterns</a> <a href="/tags/creational-design-pattern/" style="font-size: 15px;">creational design pattern</a> <a href="/tags/creational-design-patterns/" style="font-size: 10px;">creational design patterns</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/structure-design-patterns/" style="font-size: 20px;">structure design patterns</a> <a href="/tags/二分法/" style="font-size: 10px;">二分法</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/彼岸/" style="font-size: 10px;">彼岸</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/点滴/" style="font-size: 10px;">点滴</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/起航/" style="font-size: 10px;">起航</a> <a href="/tags/远行/" style="font-size: 10px;">远行</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
 					</div>
 				</section>
 				
@@ -186,6 +186,98 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-16-观察者模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/07/16-观察者模式/" class="article-date">
+  	<time datetime="2016-12-07T14:51:10.000Z" itemprop="datePublished">2016-12-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/07/16-观察者模式/">16.观察者模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Obeserver-Pattern"><a href="#Obeserver-Pattern" class="headerlink" title="Obeserver Pattern"></a>Obeserver Pattern</h1><ol>
+<li><p><strong>What</strong> is it?</p>
+<p> 订报纸是观察者模式在生活中一个很形象的例子，首先用户向报社预定报纸，报社每出一个新版本都会邮寄给订阅用户。简单来说，观察者模式可以这样定义：一个主题对象，一群关注该主题对象的观察者对象，主题对象更新就通知所有关注该主题的观察者对象。</p>
+</li>
+<li><strong>How</strong> to implement it?<ul>
+<li>设计主题接口<ul>
+<li>注册方法</li>
+<li>取消注册方法</li>
+<li>通知方法</li>
+</ul>
+</li>
+<li>主题接口实现</li>
+<li>设计观察者接口<ul>
+<li>绑定主题接口</li>
+<li>取消绑定接口</li>
+<li>接收主题更新接口</li>
+</ul>
+</li>
+<li>观察者接口实现</li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong>    </p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.observer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/7.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Subject</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">register</span><span class="params">(Observer observer)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">unregister</span><span class="params">(Observer observer)</span></span>;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function">String <span class="title">getUpdate</span><span class="params">(Observer observer)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.observer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/7.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Observer</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setSubject</span><span class="params">(Subject subject)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.observer;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/7.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTopic</span> <span class="keyword">implements</span> <span class="title">Subject</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;Observer&gt; observers;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isNotChanged = <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">private</span> String message;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] MUTEX = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>];</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyTopic</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.observers = <span class="keyword">new</span> ArrayList&lt;Observer&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">register</span><span class="params">(Observer observer)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> != observer) &#123;</div><div class="line">            <span class="keyword">synchronized</span> (MUTEX) &#123;</div><div class="line">                <span class="keyword">if</span> (!observers.contains(observer)) &#123;</div><div class="line">                    observers.add(observer);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"observer is nul"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unregister</span><span class="params">(Observer observer)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">synchronized</span> (MUTEX) &#123;</div><div class="line">            observers.remove(observer);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyObservers</span><span class="params">()</span> </span>&#123;</div><div class="line">        List&lt;Observer&gt; observersLocal = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">synchronized</span> (MUTEX) &#123;</div><div class="line">            <span class="keyword">if</span> (isNotChanged) &#123;</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">            isNotChanged = <span class="keyword">true</span>;</div><div class="line">            observersLocal = <span class="keyword">new</span> ArrayList&lt;&gt;(observers);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (Observer o : observersLocal) &#123;</div><div class="line">            o.update();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUpdate</span><span class="params">(Observer observer)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (observers.contains(observer)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.message;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(observer + <span class="string">" is not registered"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postMessage</span><span class="params">(String message)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"message posted to topic is "</span> + message);</div><div class="line">        <span class="keyword">this</span>.isNotChanged = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">this</span>.message = message;</div><div class="line">        notifyObservers();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.observer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/7.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTopicSubsciber</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Subject subject;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyTopicSubsciber</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSubject</span><span class="params">(Subject subject)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.subject = subject;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        String message = subject.getUpdate(<span class="keyword">this</span>);</div><div class="line">     <span class="keyword">if</span> (<span class="keyword">null</span> == message)&#123;</div><div class="line">         System.out.println(name + <span class="string">" get  no update message"</span>);</div><div class="line">     &#125;<span class="keyword">else</span> &#123;</div><div class="line">         System.out.println(name + <span class="string">" consume message is "</span> + message);</div><div class="line">     &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">register</span><span class="params">()</span></span>&#123;</div><div class="line">        subject.register(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unregister</span><span class="params">()</span></span>&#123;</div><div class="line">        subject.unregister(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.observer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/7.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObserverPatternTest</span> </span>&#123;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">       MyTopic myTopic = <span class="keyword">new</span> MyTopic();</div><div class="line"></div><div class="line">       MyTopicSubsciber subsciber1 = <span class="keyword">new</span> MyTopicSubsciber(<span class="string">"observer1"</span>);</div><div class="line">       MyTopicSubsciber subsciber2 = <span class="keyword">new</span> MyTopicSubsciber(<span class="string">"observer2"</span>);</div><div class="line">       MyTopicSubsciber subsciber3 = <span class="keyword">new</span> MyTopicSubsciber(<span class="string">"observer3"</span>);</div><div class="line"></div><div class="line">       subsciber1.setSubject(myTopic);</div><div class="line">       subsciber1.register();</div><div class="line"></div><div class="line">       subsciber2.setSubject(myTopic);</div><div class="line">       subsciber2.register();</div><div class="line">       subsciber3.setSubject(myTopic);</div><div class="line">       subsciber3.register();</div><div class="line"></div><div class="line">       subsciber1.update();</div><div class="line"></div><div class="line"></div><div class="line">       myTopic.postMessage(<span class="string">"New Message:Hello Everyone..."</span>);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>JDK Example</strong></p>
+<ul>
+<li>javax.servlet.http.HttpSessionBindingListener</li>
+<li>javax.servlet.http.HttpSessionAttibuteListener</li>
+<li>java.util.EventListener in Swing</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-15-责任链模式" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -941,91 +1033,6 @@
 </li>
 <li><strong>JDK Example</strong><ul>
 <li>java.rmi.*</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure-design-patterns/">structure design patterns</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-7-组合模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/25/7-组合模式/" class="article-date">
-  	<time datetime="2016-11-25T13:36:52.000Z" itemprop="datePublished">2016-11-25</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/25/7-组合模式/">7.组合模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Composite-Pattern"><a href="#Composite-Pattern" class="headerlink" title="Composite Pattern"></a>Composite Pattern</h1><ol>
-<li><p><strong>What</strong> is it?</p>
-<p> 如果需求中涉及的一组对象具有公共操作，则可将公共操作进一步抽象为接口或抽象类，如果又需要将一组对象作为一个整体操作，则可设计一个组合类封装这组类的集合并实现公共操作方法（即上一步产生的接口或抽象类）。由此，诞生了组合模式。</p>
-</li>
-<li><p><strong>How</strong> to implement it?</p>
-<ul>
-<li>Base Component，抽象公共操作，可以设计为接口或抽象类</li>
-<li>Leaf 各个独立的对象，实现或继承Base Component</li>
-<li>Composite 实现Base Component，包含Leaf集合</li>
-</ul>
-</li>
-<li><p><strong>Code Demo</strong></p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.structural.composite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/25.</div><div class="line"> * A.Base Component</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(String fillColor)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.composite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/25.</div><div class="line"> * B.Leaf Objects</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Triangle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(String fillColor)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Drwing triangle withe color "</span> + fillColor);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">package</span> designpattern.structural.composite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/25.</div><div class="line"> * A.Base Component</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(String fillColor)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.composite;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/25.</div><div class="line"> * C.Composite Object</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Composite</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;Shape&gt; shapes = <span class="keyword">new</span> ArrayList&lt;Shape&gt;();</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(String fillColor)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(Shape sh : shapes)&#123;</div><div class="line">            sh.draw(fillColor);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Shape s)</span></span>&#123;</div><div class="line">        shapes.add(s);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Shape s)</span></span>&#123;</div><div class="line">        shapes.remove(s);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clearAll</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Clearing all the shapes from drawing."</span>);</div><div class="line">        shapes.clear();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.composite;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/25.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompositePatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        Composite composite = <span class="keyword">new</span> Composite();</div><div class="line"></div><div class="line">        Shape triangle = <span class="keyword">new</span> Triangle();</div><div class="line">        Shape circle = <span class="keyword">new</span> Circle();</div><div class="line">        composite.add(triangle);</div><div class="line">        composite.add(circle);</div><div class="line"></div><div class="line">        composite.draw(<span class="string">"RED"</span>);</div><div class="line"></div><div class="line">        composite.clearAll();</div><div class="line"></div><div class="line">        composite.add(triangle);</div><div class="line">        composite.add(circle);</div><div class="line"></div><div class="line">        composite.draw(<span class="string">"GREEN"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Important Points</strong></p>
-<ul>
-<li>适用于将一组具有公共操作的对象作为一个对象的场景</li>
-<li>适用于类关系具有树形结构的特点的场景 </li>
-</ul>
-</li>
-<li><strong>JDK Example</strong><ul>
-<li>java.awt.Container#add(Component) </li>
 </ul>
 </li>
 </ol>
