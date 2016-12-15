@@ -74,7 +74,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -107,7 +107,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/behavioral-design-patterns/" style="font-size: 20px;">behavioral design patterns</a> <a href="/tags/creational-design-pattern/" style="font-size: 15px;">creational design pattern</a> <a href="/tags/creational-design-patterns/" style="font-size: 10px;">creational design patterns</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/structure-design-patterns/" style="font-size: 20px;">structure design patterns</a> <a href="/tags/二分法/" style="font-size: 10px;">二分法</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/彼岸/" style="font-size: 10px;">彼岸</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/点滴/" style="font-size: 10px;">点滴</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/起航/" style="font-size: 10px;">起航</a> <a href="/tags/远行/" style="font-size: 10px;">远行</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+						<a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/behavioral-design-patterns/" style="font-size: 20px;">behavioral design patterns</a> <a href="/tags/creational-design-pattern/" style="font-size: 13.33px;">creational design pattern</a> <a href="/tags/creational-design-patterns/" style="font-size: 10px;">creational design patterns</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/structure-design-patterns/" style="font-size: 16.67px;">structure design patterns</a> <a href="/tags/二分法/" style="font-size: 10px;">二分法</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/彼岸/" style="font-size: 10px;">彼岸</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/点滴/" style="font-size: 10px;">点滴</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/起航/" style="font-size: 10px;">起航</a> <a href="/tags/远行/" style="font-size: 10px;">远行</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
 					</div>
 				</section>
 				
@@ -186,6 +186,117 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-20-访问者模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/15/20-访问者模式/" class="article-date">
+  	<time datetime="2016-12-15T13:34:48.000Z" itemprop="datePublished">2016-12-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/15/20-访问者模式/">20.访问者模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Visitor-Pattern"><a href="#Visitor-Pattern" class="headerlink" title="Visitor Pattern"></a>Visitor Pattern</h1><ol>
+<li><p><strong>What</strong> is it?</p>
+<p> 如果对于一组事物具有相似的操作，比如计算购物车里面的各种商品的总价。一种方法是每件商品包含计算价格的方法，缺点是计算方法与商品耦合。另一种方法是把操作逻辑抽象出来成为Visitor，物品使用该Visitor，则完成了解耦。这也就是访问者模式的精髓。</p>
+</li>
+<li><strong>How</strong> to implement it?<ul>
+<li>设计操作对象接口及操作方法</li>
+<li>实现具体操作对象</li>
+<li>设计访问者接口</li>
+<li>实现具体的访问者接口 </li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong></p>
+<p> A.待操作对象</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.visitor;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ItemElement</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">accept</span><span class="params">(ShoppingChartVisitor visitor)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.visitor;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> <span class="keyword">implements</span> <span class="title">ItemElement</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String isbnNum;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> price;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">(String isbnNum, <span class="keyword">int</span> price)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.isbnNum = isbnNum;</div><div class="line">        <span class="keyword">this</span>.price = price;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> price;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getIsbnNum</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> isbnNum;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">accept</span><span class="params">(ShoppingChartVisitor visitor)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> visitor.visit(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.visitor;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> <span class="keyword">implements</span> <span class="title">ItemElement</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> pricePerkg;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> weight;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Fruit</span><span class="params">(<span class="keyword">int</span> pricePerkg, <span class="keyword">int</span> weight, String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.pricePerkg = pricePerkg;</div><div class="line">        <span class="keyword">this</span>.weight = weight;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPricePerkg</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> pricePerkg;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWeight</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> weight;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">accept</span><span class="params">(ShoppingChartVisitor visitor)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span>  visitor.visit(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> B.访问者接口</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.visitor;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ShoppingChartVisitor</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">visit</span><span class="params">(Book book)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">visit</span><span class="params">(Fruit fruit)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.visitor;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShoppingChartVisitorImpl</span> <span class="keyword">implements</span> <span class="title">ShoppingChartVisitor</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">visit</span><span class="params">(Book book)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> price = book.getPrice();</div><div class="line">        <span class="keyword">int</span> cost = <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(price &gt; <span class="number">50</span>)&#123;</div><div class="line"></div><div class="line">            cost = price - <span class="number">5</span>;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            cost = price;</div><div class="line">        &#125;</div><div class="line">        System.out.println(<span class="string">"Book isbnNum "</span> + book.getIsbnNum() + <span class="string">" cost "</span> + cost);</div><div class="line">        <span class="keyword">return</span> cost;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">visit</span><span class="params">(Fruit fruit)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> cost = fruit.getPricePerkg() * fruit.getWeight();</div><div class="line">        System.out.println(fruit.getName() + <span class="string">" cost "</span> + cost);</div><div class="line">        <span class="keyword">return</span> cost;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> C.Test Program</p>
+<pre><code class="java">
+<span class="keyword">package</span> designpattern.behavioral.visitor;
+
+<span class="comment">/**
+ * Created by AbuGe on 2016/12/15.
+ */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VisitorPatternTest</span> </span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+        ItemElement[] itemElements = {<span class="keyword">new</span> Book(<span class="string">"isbn1234"</span>, <span class="number">38</span>), <span class="keyword">new</span> Book(<span class="string">"isbn5678"</span>, <span class="number">98</span>), <span class="keyword">new</span> Fruit(<span class="number">20</span>, <span class="number">3</span>, <span class="string">"apple"</span>), <span class="keyword">new</span> Fruit(<span class="number">30</span>, <span class="number">5</span>, <span class="string">"banana"</span>)};
+
+        <span class="keyword">int</span> total = calculateItemTotalPrice(itemElements);
+
+        System.out.println(<span class="string">"total price is "</span> + total);
+    }
+
+    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calculateItemTotalPrice</span><span class="params">(ItemElement[] itemElements)</span> </span>{
+        ShoppingChartVisitor shoppingChartVisitor = <span class="keyword">new</span> ShoppingChartVisitorImpl();
+        <span class="keyword">int</span> cost = <span class="number">0</span>;
+        <span class="keyword">for</span> (ItemElement item : itemElements) {
+            cost += item.accept(shoppingChartVisitor);
+        }
+        <span class="keyword">return</span> cost;
+    }
+}
+</code></pre>
+</li>
+<li><strong>Benefit</strong><ul>
+<li>解耦，如果操作逻辑修改，只需修改访问者接口</li>
+<li>易于扩展，新增操作对象及逻辑，只需修改访问者接口，原有对象及操作不影响</li>
+<li>必须提前设计好操作的返回值类型，否则需要修改全部的访问者接口</li>
+<li>若访问者接口实现过多，则难以扩展</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-19-状态模式" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -1008,83 +1119,9 @@
 
 
   
-    <article id="post-11-桥接模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/30/11-桥接模式/" class="article-date">
-  	<time datetime="2016-11-30T14:10:38.000Z" itemprop="datePublished">2016-11-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/30/11-桥接模式/">11.桥接模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Bridge-Pattern"><a href="#Bridge-Pattern" class="headerlink" title="Bridge Pattern"></a>Bridge Pattern</h1><ol>
-<li><p><strong>What</strong> is it?</p>
-<p> 一个类的功能需要实现多个类则意味着与这些类都耦合，如果将这些类按照其层级关系进行适当的组合即将继承关系转换为组合，这就是桥接模式思想的来源。简而言之，从实现中解耦出抽象层，以组合的方式实现功能。</p>
-</li>
-<li><strong>How</strong> to implement it?<ul>
-<li>分析类图关系，解耦出抽象层</li>
-<li>将此抽象层组合到父类中</li>
-<li>继承或实现父类</li>
-</ul>
-</li>
-<li><p><strong>Code Demo</strong></p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.bridge;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/30.</div><div class="line"> * A.从类层次中解耦处的抽象类</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Color</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyColor</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.bridge;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/30.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GreenColor</span> <span class="keyword">implements</span> <span class="title">Color</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyColor</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"green."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.bridge;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/30.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedColor</span> <span class="keyword">implements</span> <span class="title">Color</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyColor</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"red."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.bridge;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/30.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    Color color;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Shape</span><span class="params">(Color color)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.color = color;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">applyColor</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.bridge;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/30.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pentagon</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pentagon</span><span class="params">(Color color)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(color);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyColor</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        System.out.print(<span class="string">"filled Pentagon with color..."</span>);</div><div class="line">        color.applyColor();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.bridge;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/30.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Triangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Triangle</span><span class="params">(Color color)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(color);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyColor</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.print(<span class="string">"filled triangle with color..."</span>);</div><div class="line">        color.applyColor();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.bridge;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/30.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pentagon</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pentagon</span><span class="params">(Color color)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(color);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">applyColor</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        System.out.print(<span class="string">"filled Pentagon with color..."</span>);</div><div class="line">        color.applyColor();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.bridge;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/30.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BridgePatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Shape triangle = <span class="keyword">new</span> Triangle(<span class="keyword">new</span> RedColor());</div><div class="line">        triangle.applyColor();</div><div class="line"></div><div class="line">        Shape pentagon = <span class="keyword">new</span> Pentagon(<span class="keyword">new</span> GreenColor());</div><div class="line">        pentagon.applyColor();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure-design-patterns/">structure design patterns</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>

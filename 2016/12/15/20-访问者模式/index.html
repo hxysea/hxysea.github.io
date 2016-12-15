@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>20.访问者模式 | 阿布哥</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Visitor Pattern
+What is it?
+ 如果对于一组事物具有相似的操作，比如计算购物车里面的各种商品的总价。一种方法是每件商品包含计算价格的方法，缺点是计算方法与商品耦合。另一种方法是把操作逻辑抽象出来成为Visitor，物品使用该Visitor，则完成了解耦。这也就是访问者模式的精髓。
+
+How to implement it?
+设计操作对象接口及操作方法
+实现具体操作对象
+设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20.访问者模式">
+<meta property="og:url" content="http://yoursite.com/2016/12/15/20-访问者模式/index.html">
+<meta property="og:site_name" content="阿布哥">
+<meta property="og:description" content="Visitor Pattern
+What is it?
+ 如果对于一组事物具有相似的操作，比如计算购物车里面的各种商品的总价。一种方法是每件商品包含计算价格的方法，缺点是计算方法与商品耦合。另一种方法是把操作逻辑抽象出来成为Visitor，物品使用该Visitor，则完成了解耦。这也就是访问者模式的精髓。
+
+How to implement it?
+设计操作对象接口及操作方法
+实现具体操作对象
+设">
+<meta property="og:updated_time" content="2016-12-15T14:54:00.022Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="20.访问者模式">
+<meta name="twitter:description" content="Visitor Pattern
+What is it?
+ 如果对于一组事物具有相似的操作，比如计算购物车里面的各种商品的总价。一种方法是每件商品包含计算价格的方法，缺点是计算方法与商品耦合。另一种方法是把操作逻辑抽象出来成为Visitor，物品使用该Visitor，则完成了解耦。这也就是访问者模式的精髓。
+
+How to implement it?
+设计操作对象接口及操作方法
+实现具体操作对象
+设">
+  
+    <link rel="alternative" href="/atom.xml" title="阿布哥" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://i.imgur.com/0mRLduT.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">阿布哥</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/hxysea" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/huxianyang8568@163.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/behavioral-design-patterns/" style="font-size: 20px;">behavioral design patterns</a> <a href="/tags/creational-design-pattern/" style="font-size: 13.33px;">creational design pattern</a> <a href="/tags/creational-design-patterns/" style="font-size: 10px;">creational design patterns</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/structure-design-patterns/" style="font-size: 16.67px;">structure design patterns</a> <a href="/tags/二分法/" style="font-size: 10px;">二分法</a> <a href="/tags/归并排序/" style="font-size: 10px;">归并排序</a> <a href="/tags/彼岸/" style="font-size: 10px;">彼岸</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/点滴/" style="font-size: 10px;">点滴</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/编程/" style="font-size: 10px;">编程</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/起航/" style="font-size: 10px;">起航</a> <a href="/tags/远行/" style="font-size: 10px;">远行</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">阿布哥</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://i.imgur.com/0mRLduT.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">阿布哥</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/hxysea" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/huxianyang8568@163.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-20-访问者模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/15/20-访问者模式/" class="article-date">
+  	<time datetime="2016-12-15T13:34:48.000Z" itemprop="datePublished">2016-12-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      20.访问者模式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Visitor-Pattern"><a href="#Visitor-Pattern" class="headerlink" title="Visitor Pattern"></a>Visitor Pattern</h1><ol>
+<li><p><strong>What</strong> is it?</p>
+<p> 如果对于一组事物具有相似的操作，比如计算购物车里面的各种商品的总价。一种方法是每件商品包含计算价格的方法，缺点是计算方法与商品耦合。另一种方法是把操作逻辑抽象出来成为Visitor，物品使用该Visitor，则完成了解耦。这也就是访问者模式的精髓。</p>
+</li>
+<li><strong>How</strong> to implement it?<ul>
+<li>设计操作对象接口及操作方法</li>
+<li>实现具体操作对象</li>
+<li>设计访问者接口</li>
+<li>实现具体的访问者接口 </li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong></p>
+<p> A.待操作对象</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.visitor;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ItemElement</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">accept</span><span class="params">(ShoppingChartVisitor visitor)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.visitor;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span> <span class="keyword">implements</span> <span class="title">ItemElement</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String isbnNum;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> price;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Book</span><span class="params">(String isbnNum, <span class="keyword">int</span> price)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.isbnNum = isbnNum;</div><div class="line">        <span class="keyword">this</span>.price = price;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> price;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getIsbnNum</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> isbnNum;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">accept</span><span class="params">(ShoppingChartVisitor visitor)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> visitor.visit(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.visitor;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> <span class="keyword">implements</span> <span class="title">ItemElement</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> pricePerkg;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> weight;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Fruit</span><span class="params">(<span class="keyword">int</span> pricePerkg, <span class="keyword">int</span> weight, String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.pricePerkg = pricePerkg;</div><div class="line">        <span class="keyword">this</span>.weight = weight;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPricePerkg</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> pricePerkg;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getWeight</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> weight;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">accept</span><span class="params">(ShoppingChartVisitor visitor)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span>  visitor.visit(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> B.访问者接口</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.visitor;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ShoppingChartVisitor</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">visit</span><span class="params">(Book book)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">visit</span><span class="params">(Fruit fruit)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.visitor;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/15.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShoppingChartVisitorImpl</span> <span class="keyword">implements</span> <span class="title">ShoppingChartVisitor</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">visit</span><span class="params">(Book book)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> price = book.getPrice();</div><div class="line">        <span class="keyword">int</span> cost = <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(price &gt; <span class="number">50</span>)&#123;</div><div class="line"></div><div class="line">            cost = price - <span class="number">5</span>;</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            cost = price;</div><div class="line">        &#125;</div><div class="line">        System.out.println(<span class="string">"Book isbnNum "</span> + book.getIsbnNum() + <span class="string">" cost "</span> + cost);</div><div class="line">        <span class="keyword">return</span> cost;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">visit</span><span class="params">(Fruit fruit)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> cost = fruit.getPricePerkg() * fruit.getWeight();</div><div class="line">        System.out.println(fruit.getName() + <span class="string">" cost "</span> + cost);</div><div class="line">        <span class="keyword">return</span> cost;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> C.Test Program</p>
+<pre><code class="java">
+<span class="keyword">package</span> designpattern.behavioral.visitor;
+
+<span class="comment">/**
+ * Created by AbuGe on 2016/12/15.
+ */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VisitorPatternTest</span> </span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+        ItemElement[] itemElements = {<span class="keyword">new</span> Book(<span class="string">"isbn1234"</span>, <span class="number">38</span>), <span class="keyword">new</span> Book(<span class="string">"isbn5678"</span>, <span class="number">98</span>), <span class="keyword">new</span> Fruit(<span class="number">20</span>, <span class="number">3</span>, <span class="string">"apple"</span>), <span class="keyword">new</span> Fruit(<span class="number">30</span>, <span class="number">5</span>, <span class="string">"banana"</span>)};
+
+        <span class="keyword">int</span> total = calculateItemTotalPrice(itemElements);
+
+        System.out.println(<span class="string">"total price is "</span> + total);
+    }
+
+    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calculateItemTotalPrice</span><span class="params">(ItemElement[] itemElements)</span> </span>{
+        ShoppingChartVisitor shoppingChartVisitor = <span class="keyword">new</span> ShoppingChartVisitorImpl();
+        <span class="keyword">int</span> cost = <span class="number">0</span>;
+        <span class="keyword">for</span> (ItemElement item : itemElements) {
+            cost += item.accept(shoppingChartVisitor);
+        }
+        <span class="keyword">return</span> cost;
+    }
+}
+</code></pre>
+</li>
+<li><strong>Benefit</strong><ul>
+<li>解耦，如果操作逻辑修改，只需修改访问者接口</li>
+<li>易于扩展，新增操作对象及逻辑，只需修改访问者接口，原有对象及操作不影响</li>
+<li>必须提前设计好操作的返回值类型，否则需要修改全部的访问者接口</li>
+<li>若访问者接口实现过多，则难以扩展</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/14/19-状态模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">19.状态模式</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="20-访问者模式" data-title="20.访问者模式" data-url="http://yoursite.com/2016/12/15/20-访问者模式/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 阿布哥
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
