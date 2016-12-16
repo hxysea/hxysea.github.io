@@ -74,7 +74,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -186,6 +186,88 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-12-装饰者模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/30/12-装饰者模式/" class="article-date">
+  	<time datetime="2016-11-30T14:13:25.000Z" itemprop="datePublished">2016-11-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/30/12-装饰者模式/">12.装饰者模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Decorator-Pattern"><a href="#Decorator-Pattern" class="headerlink" title="Decorator Pattern"></a>Decorator Pattern</h1><ol>
+<li><p><strong>What</strong> is it?</p>
+<p> 所谓装饰者模式即在原有功能基础之上增加一些新功能，本质上使用组合的方式来完成需求功能。以往设计使用继承的方式在基础功能上增加新功能，那就有个弊端如果同时需要增加多个功能则要继承多个类，使新类与原有逻辑耦合在一起。如果抽象出一层装饰类，再组合一个基础接口成员变量，则完成了装饰的雏形。以基础接口为主线依次继承装饰类，使用组合方式取代继承方式是装饰者模式的核心思想。</p>
+</li>
+<li><strong>How</strong> to implement it?<ul>
+<li>设计基础接口</li>
+<li>实现基本功能</li>
+<li>实现父装饰功能</li>
+<li>实现子装饰功能</li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> * A.Component Interface</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Car</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">assemble</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> * B.Component Implementation</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BasicCar</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">assemble</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.print(<span class="string">"assemble basic car "</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> * C.Decorator</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CarDecorator</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</div><div class="line">    <span class="keyword">protected</span> Car car;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CarDecorator</span><span class="params">(Car car)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.car = car;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">assemble</span><span class="params">()</span> </span>&#123;</div><div class="line">        car.assemble();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SportCar</span> <span class="keyword">extends</span> <span class="title">CarDecorator</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SportCar</span><span class="params">(Car car)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(car);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">assemble</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.assemble();</div><div class="line">        System.out.print(<span class="string">"with adding sport feature "</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> * D: Concrete Decorators</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LuxuryCar</span> <span class="keyword">extends</span> <span class="title">CarDecorator</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LuxuryCar</span><span class="params">(Car car)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(car);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">assemble</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.assemble();</div><div class="line">        System.out.print(<span class="string">"with adding luxury feature "</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> * E.Test</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DecoratorPatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SportCar sportCar = <span class="keyword">new</span> SportCar(<span class="keyword">new</span> LuxuryCar(<span class="keyword">new</span> BasicCar()));</div><div class="line">        sportCar.assemble();</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"\n-------------------------"</span>);</div><div class="line"></div><div class="line">        LuxuryCar luxuryCar = <span class="keyword">new</span> LuxuryCar(<span class="keyword">new</span> BasicCar());</div><div class="line">        luxuryCar.assemble();</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Important Points</strong></p>
+<ul>
+<li>根据需求，运行时动态扩功能，选择多时（根据基本功能扩展需求较多）更易扩展和维护</li>
+<li>缺点是会创建很多相似的装饰者子类</li>
+<li>java.io.*中的BufferedReader等</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure-design-patterns/">structure design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-11-桥接模式" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -905,87 +987,6 @@
 <ul>
 <li>分开设置必选和可选参数，一行代码设置入参</li>
 <li>先设置参数，后创建对象，保证了创建的对象的状态的一致性</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/creational-design-pattern/">creational design pattern</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-3-抽象工厂设计模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/21/3-抽象工厂设计模式/" class="article-date">
-  	<time datetime="2016-11-21T14:03:35.000Z" itemprop="datePublished">2016-11-21</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/21/3-抽象工厂设计模式/">3.抽象工厂设计模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Abstract-Factory-Pattern"><a href="#Abstract-Factory-Pattern" class="headerlink" title="Abstract Factory Pattern"></a>Abstract Factory Pattern</h1><ol>
-<li><p><strong>What</strong> is it?</p>
-<p> 抽象工厂模式是建立在工厂模式的基础上，对工厂模式中的工厂进一步抽象出一个<strong>抽象工厂</strong>。</p>
-</li>
-<li><p><strong>How</strong> to implement it?</p>
-<ul>
-<li>设计一个抽象工厂类，定义工厂的公共方法（获取对象）</li>
-<li>设计一个根据工厂类型获取对象的方法，去除原工厂模式中的if/else判断，使用抽象工厂类型作为入参，生产对象</li>
-</ul>
-</li>
-<li><p><strong>Code Demo</strong></p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.creational.abstractfactory;</div><div class="line"></div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Computer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/21.</div><div class="line"> * A.Abstract Factory</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ComputerAbstractFactory</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> Computer <span class="title">createComputer</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.creational.abstractfactory;</div><div class="line"></div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Computer;</div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.PC;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/21.</div><div class="line"> * B. Sub Class Factory</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PCFactory</span> <span class="keyword">implements</span> <span class="title">ComputerAbstractFactory</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String ram;</div><div class="line">    <span class="keyword">private</span> String hdd;</div><div class="line">    <span class="keyword">private</span> String cpu;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PCFactory</span><span class="params">(String ram, String hdd, String cpu)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.ram = ram;</div><div class="line">        <span class="keyword">this</span>.hdd = hdd;</div><div class="line">        <span class="keyword">this</span>.cpu = cpu;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Computer <span class="title">createComputer</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PC(ram, hdd, cpu);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.creational.abstractfactory;</div><div class="line"></div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Computer;</div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Server;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/21.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServerFactory</span> <span class="keyword">implements</span> <span class="title">ComputerAbstractFactory</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String ram;</div><div class="line">    <span class="keyword">private</span> String hdd;</div><div class="line">    <span class="keyword">private</span> String cpu;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ServerFactory</span><span class="params">(String ram, String hdd, String cpu)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.ram = ram;</div><div class="line">        <span class="keyword">this</span>.hdd = hdd;</div><div class="line">        <span class="keyword">this</span>.cpu = cpu;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Computer <span class="title">createComputer</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Server(ram,hdd,cpu);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.creational.abstractfactory;</div><div class="line"></div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Computer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/21.</div><div class="line"> * C. Fatory Class</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerFactory</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Computer <span class="title">getComputer</span><span class="params">(ComputerAbstractFactory factory)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> factory.createComputer();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.creational.abstractfactory;</div><div class="line"></div><div class="line"><span class="keyword">import</span> designpattern.creational.factory.Computer;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/20.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestFactory</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        Computer pc = ComputerFactory.getComputer(<span class="keyword">new</span> PCFactory(<span class="string">"2G"</span>, <span class="string">"500G"</span>, <span class="string">"4GHZ"</span>));</div><div class="line"></div><div class="line">        Computer server = ComputerFactory.getComputer(<span class="keyword">new</span> ServerFactory(<span class="string">"32G"</span>, <span class="string">"1000G"</span>, <span class="string">"8GHZ"</span>));</div><div class="line">        System.out.println(<span class="string">"get pc config from abstract factory is "</span> + pc);</div><div class="line">        System.out.println(<span class="string">"get server config from abstract factory is "</span> + server);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Benefits</strong></p>
-<ul>
-<li>面向接口编程，客户端与服务端解耦</li>
-<li>更易扩展，增加新工厂即可，与源代码无耦合</li>
-<li>更健壮，去除工厂模式的条件判断逻辑</li>
 </ul>
 </li>
 </ol>

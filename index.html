@@ -74,7 +74,7 @@
 						<li>Links</li>
 						
 						
-						<li>About</li>
+						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -186,6 +186,92 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-21-解释器模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/16/21-解释器模式/" class="article-date">
+  	<time datetime="2016-12-16T13:38:24.000Z" itemprop="datePublished">2016-12-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/16/21-解释器模式/">21.解释器模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Interpreter-Pattern"><a href="#Interpreter-Pattern" class="headerlink" title="Interpreter Pattern"></a>Interpreter Pattern</h1><ol>
+<li><p><strong>What</strong> is it?</p>
+<p> javac将<em>.java解释为</em>.class，javac充当的是一个解释器的角色。利用解释器的思想设计出解释器设计模式，其解决的需求场景是这样的：一对些输入根据既定语法作解释逻辑操作，将这种思想抽象出来即一个解释器接口（定义解释方法），一组解释器实现，根据需求标识不同的解释路径；一个解释器上下文（定义具体的解释方法）；设计解释器客户端，定义语法树，规定如何解释</p>
+</li>
+<li><strong>How</strong> to implement it?<ul>
+<li>设计InterpreterContext</li>
+<li>设计Expression接口</li>
+<li>实现Expression接口，消费InterprerContext方法</li>
+<li>设计解释器客户端，定义语法树 </li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.interpreter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/16.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterpreterContext</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getBinaryFormat</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> Integer.toBinaryString(i);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getHexdecimalFormat</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> Integer.toHexString(i);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.interpreter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/16.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Expression</span> </span>&#123;</div><div class="line">    <span class="function">String <span class="title">interpret</span><span class="params">(InterpreterContext context)</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.interpreter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/16.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Int2BinaryExpression</span> <span class="keyword">implements</span>  <span class="title">Expression</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> i;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Int2BinaryExpression</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.i = i;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">interpret</span><span class="params">(InterpreterContext context)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> context.getBinaryFormat(i);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.interpreter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/16.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Int2HexadecimalExpression</span> <span class="keyword">implements</span> <span class="title">Expression</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span>  <span class="keyword">int</span> i;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Int2HexadecimalExpression</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.i = i;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">interpret</span><span class="params">(InterpreterContext context)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> context.getHexdecimalFormat(i);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.interpreter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/16.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterpreterClient</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> InterpreterContext context;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">InterpreterClient</span><span class="params">(InterpreterContext context)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.context = context;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">interpret</span><span class="params">(String input)</span></span>&#123;</div><div class="line">        Expression expression = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span> (input.contains(<span class="string">"binary"</span>))&#123;</div><div class="line">            expression = <span class="keyword">new</span> Int2BinaryExpression(Integer.parseInt(input.substring(<span class="number">0</span>, input.indexOf(<span class="string">" "</span>))));</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (input.contains(<span class="string">"hexadecimal"</span>))&#123;</div><div class="line"></div><div class="line">            expression = <span class="keyword">new</span> Int2HexadecimalExpression(Integer.parseInt(input.substring(<span class="number">0</span>, input.indexOf(<span class="string">" "</span>))));</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> input;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> expression.interpret(context);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.interpreter;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/16.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterpreterPatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        InterpreterClient interpreterClient = <span class="keyword">new</span> InterpreterClient(<span class="keyword">new</span> InterpreterContext());</div><div class="line"></div><div class="line">        String interpretResult = interpreterClient.interpret(<span class="string">"36 int binary"</span>);</div><div class="line">        String interpretResult2 = interpreterClient.interpret(<span class="string">"36 int hexadecimal"</span>);</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"36 in binary is "</span> + interpretResult);</div><div class="line">        System.out.println(<span class="string">"36 in hexadecimal is "</span> + interpretResult2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>JDK Example</strong></p>
+<ul>
+<li>java.util.Pattern</li>
+<li>java.text.Format</li>
+</ul>
+</li>
+<li><strong>Important Points</strong><ul>
+<li>根据既定语法作对应的解释处理</li>
+<li>需要错误检查等，语法树复杂时解释效率降低，也更难维护 </li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-20-访问者模式" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -989,88 +1075,6 @@
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-12-装饰者模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/30/12-装饰者模式/" class="article-date">
-  	<time datetime="2016-11-30T14:13:25.000Z" itemprop="datePublished">2016-11-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/30/12-装饰者模式/">12.装饰者模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Decorator-Pattern"><a href="#Decorator-Pattern" class="headerlink" title="Decorator Pattern"></a>Decorator Pattern</h1><ol>
-<li><p><strong>What</strong> is it?</p>
-<p> 所谓装饰者模式即在原有功能基础之上增加一些新功能，本质上使用组合的方式来完成需求功能。以往设计使用继承的方式在基础功能上增加新功能，那就有个弊端如果同时需要增加多个功能则要继承多个类，使新类与原有逻辑耦合在一起。如果抽象出一层装饰类，再组合一个基础接口成员变量，则完成了装饰的雏形。以基础接口为主线依次继承装饰类，使用组合方式取代继承方式是装饰者模式的核心思想。</p>
-</li>
-<li><strong>How</strong> to implement it?<ul>
-<li>设计基础接口</li>
-<li>实现基本功能</li>
-<li>实现父装饰功能</li>
-<li>实现子装饰功能</li>
-</ul>
-</li>
-<li><p><strong>Code Demo</strong></p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> * A.Component Interface</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Car</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">assemble</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> * B.Component Implementation</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BasicCar</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">assemble</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.print(<span class="string">"assemble basic car "</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> * C.Decorator</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CarDecorator</span> <span class="keyword">implements</span> <span class="title">Car</span> </span>&#123;</div><div class="line">    <span class="keyword">protected</span> Car car;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CarDecorator</span><span class="params">(Car car)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.car = car;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">assemble</span><span class="params">()</span> </span>&#123;</div><div class="line">        car.assemble();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SportCar</span> <span class="keyword">extends</span> <span class="title">CarDecorator</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SportCar</span><span class="params">(Car car)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(car);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">assemble</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.assemble();</div><div class="line">        System.out.print(<span class="string">"with adding sport feature "</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> * D: Concrete Decorators</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LuxuryCar</span> <span class="keyword">extends</span> <span class="title">CarDecorator</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LuxuryCar</span><span class="params">(Car car)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>(car);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">assemble</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.assemble();</div><div class="line">        System.out.print(<span class="string">"with adding luxury feature "</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.structural.decorator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/1.</div><div class="line"> * E.Test</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DecoratorPatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        SportCar sportCar = <span class="keyword">new</span> SportCar(<span class="keyword">new</span> LuxuryCar(<span class="keyword">new</span> BasicCar()));</div><div class="line">        sportCar.assemble();</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"\n-------------------------"</span>);</div><div class="line"></div><div class="line">        LuxuryCar luxuryCar = <span class="keyword">new</span> LuxuryCar(<span class="keyword">new</span> BasicCar());</div><div class="line">        luxuryCar.assemble();</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Important Points</strong></p>
-<ul>
-<li>根据需求，运行时动态扩功能，选择多时（根据基本功能扩展需求较多）更易扩展和维护</li>
-<li>缺点是会创建很多相似的装饰者子类</li>
-<li>java.io.*中的BufferedReader等</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure-design-patterns/">structure design patterns</a></li></ul>
 	</div>
 
       
