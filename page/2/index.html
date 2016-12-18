@@ -187,6 +187,109 @@
 
       <div class="body-wrap">
   
+    <article id="post-13-模板方法模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/04/13-模板方法模式/" class="article-date">
+  	<time datetime="2016-12-04T07:17:35.000Z" itemprop="datePublished">2016-12-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/04/13-模板方法模式/">13.模板方法模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Template-Method-Pattern"><a href="#Template-Method-Pattern" class="headerlink" title="Template Method Pattern"></a>Template Method Pattern</h1><ol>
+<li><p><strong>What</strong> is it?<br> 举个例子：</p>
+<ul>
+<li>任务：建造房屋</li>
+<li><p>建造方法：</p>
+<ol>
+<li>打地基</li>
+<li>打木桩</li>
+<li>造墙</li>
+<li>造窗子</li>
+<li>封顶</li>
+<li>装修  </li>
+</ol>
+<p>如建造房屋的例子，1-6顺序不可变，每一步根据需求自行选择具体方法，比如可以做木墙也可以做土墙，但是必须先造墙，再造窗子，顺序不可变。<br>如果经过抽象出来的对象包含一类方法，这类方法是一套算法并且这套算法每一步的执行顺序不可变，则可以使用模板方法模式。换句话说，模板方法的核心思想就是封装一套任务执行的步骤且每一步执行顺序固定，不可更换。子类可以根据需求，自定义每一步的具体实现。</p>
+</li>
+</ul>
+</li>
+<li><strong>How</strong> to implement it?<ul>
+<li>设计抽象模板方法类（包含模板方法和基本实现以及需要子类实现的抽象方法）</li>
+<li>实现模板类（实现抽象方法或子类需求中需要覆写的方法）</li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong><br> A. Template Method Abstract Class</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.templatemethod;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/4.</div><div class="line"> * A. Template Method Abstract Class</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">HouseTemplate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//模板方法，不可父写</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">buildHouse</span><span class="params">()</span> </span>&#123;</div><div class="line">        buildFoundation();</div><div class="line">        buildPillars();</div><div class="line">        buildWalls();</div><div class="line">        buildWindows();</div><div class="line">        System.out.println(<span class="string">"house build completed."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//需要子类实现的方法</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">buildWalls</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">buildPillars</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">//默认不可覆写的方法</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildFoundation</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building foundation with cement, iron rods and and."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildWindows</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building glass windows."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> B. Template Method Concrete Classes</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.templatemethod;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/4.</div><div class="line"> * B. Template Method Concrete Classes</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WoodenHouse</span> <span class="keyword">extends</span> <span class="title">HouseTemplate</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildWalls</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building wooden walls."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildPillars</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building pillars with wooden coating."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.templatemethod;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/4.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlassHouse</span> <span class="keyword">extends</span> <span class="title">HouseTemplate</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildWalls</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building glass walls."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildPillars</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building pillars with glass coating."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> C. Template Method Pattern Client</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.templatemethod;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/4.</div><div class="line"> * C. Template Method Pattern Client</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TemplateMethodPatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        HouseTemplate house = <span class="keyword">new</span> WoodenHouse();</div><div class="line">        house.buildHouse();</div><div class="line">        System.out.println(<span class="string">"-------------------------------"</span>);</div><div class="line">        house = <span class="keyword">new</span> GlassHouse();</div><div class="line">        house.buildHouse();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>JDK Example</strong></p>
+<ul>
+<li>InputStream/OutputStream/Reader/Writer类的非抽象方法 </li>
+<li>AbstractList/AbstractSet/AbstractMap类的非抽象方法</li>
+</ul>
+</li>
+<li><p><strong>Important Points</strong></p>
+<ul>
+<li>模板方法中的步骤顺序固定，模板方法声明为final，子类和基类每一步方法实现可不同</li>
+<li>超类选择子类方法加载</li>
+<li>基类中的默认实现就像一个钩子可以被子类覆写，也可声明为final不被子类覆写 </li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Behavioral-Design-Patterns" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -897,95 +1000,6 @@
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure-design-patterns/">structure design patterns</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-5-原型模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/23/5-原型模式/" class="article-date">
-  	<time datetime="2016-11-23T12:36:43.000Z" itemprop="datePublished">2016-11-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/23/5-原型模式/">5.原型模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Prototype-Pattern"><a href="#Prototype-Pattern" class="headerlink" title="Prototype Pattern"></a>Prototype Pattern</h1><ol>
-<li><p><strong>What</strong> is it and <strong>Why</strong>?</p>
-<p> 当你的需求具备以下三个条件时，你可以选择原型设计模式：</p>
-<ul>
-<li>需要创建对象</li>
-<li>创建对象成本比较大，耗时且占用资源较多</li>
-<li>已经存在一个原始可使用</li>
-<li><p>原始对象可复制（clone），根据需求确定是使用深拷贝还是浅拷贝</p>
-<p>原型模式提供了一种从原始对象到新对象的机制，然后根据需求修改新对象，其中的原理是基于java的clone方法。比如从数据库里面加载数据，然后修改数据对象，则可以创建该对象的副本，修改副本则不用每次从数据库加载数据。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>How</strong> to implement it?</p>
-<ul>
-<li>目标类覆写clone方法，根据需求选择深拷贝还是浅拷贝</li>
-<li>创建含clone数据的目标类构造函数供clone方法使用</li>
-</ul>
-</li>
-</ol>
-<ol>
-<li><p><strong>Code Demo</strong></p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.creational.prototype;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/23.</div><div class="line"> * 待存储元数据类</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeInfo</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"EmployeeInfo&#123;"</span> +</div><div class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</div><div class="line">                <span class="string">", age="</span> + age +</div><div class="line">                <span class="string">'&#125;'</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">EmployeeInfo</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.creational.prototype;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/23.</div><div class="line"> * 原始类</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Empolyees</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;String&gt; empolyeesList;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> List&lt;EmployeeInfo&gt; infos;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getEmpolyeesList</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> empolyeesList;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;EmployeeInfo&gt; <span class="title">getInfos</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> infos;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Empolyees</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.empolyeesList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="keyword">this</span>.infos = <span class="keyword">new</span> ArrayList&lt;EmployeeInfo&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Empolyees</span><span class="params">(List&lt;String&gt; empolyeesList, List&lt;EmployeeInfo&gt; infos)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.empolyeesList = empolyeesList;</div><div class="line">        <span class="keyword">this</span>.infos = infos;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadData</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">//从数据库加载数据并存储在list中</span></div><div class="line">        empolyeesList.add(<span class="keyword">new</span> String(<span class="string">"abc"</span>));</div><div class="line">        empolyeesList.add(<span class="string">"def"</span>);</div><div class="line">        empolyeesList.add(<span class="string">"ghi"</span>);</div><div class="line">        empolyeesList.add(<span class="string">"jkl"</span>);</div><div class="line">        empolyeesList.add(<span class="string">"mno"</span>);</div><div class="line">        empolyeesList.add(<span class="string">"opr"</span>);</div><div class="line"></div><div class="line"></div><div class="line">        infos.add(<span class="keyword">new</span> EmployeeInfo(<span class="string">"abu"</span>, <span class="number">27</span>));</div><div class="line">        infos.add(<span class="keyword">new</span> EmployeeInfo(<span class="string">"abuge"</span>, <span class="number">28</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Empolyees <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</div><div class="line">        List&lt;String&gt; empList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">        <span class="comment">//浅拷贝</span></div><div class="line">        <span class="keyword">for</span> (String element : getEmpolyeesList()) &#123;</div><div class="line">            empList.add(element);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//深拷贝</span></div><div class="line">        List&lt;EmployeeInfo&gt; empInfo = <span class="keyword">new</span> ArrayList&lt;EmployeeInfo&gt;();</div><div class="line">        <span class="keyword">for</span> (EmployeeInfo element : getInfos()) &#123;</div><div class="line">            empInfo.add(<span class="keyword">new</span> EmployeeInfo(element.getName(), element.getAge()));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Empolyees(empList, empInfo);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.creational.prototype;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/23.</div><div class="line"> * 测试类</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProtoTypePatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</div><div class="line">        Empolyees originObj = <span class="keyword">new</span> Empolyees();</div><div class="line">        originObj.loadData();</div><div class="line"></div><div class="line"></div><div class="line">        Empolyees newObj = originObj.clone();</div><div class="line">        Empolyees newObj2 = originObj.clone();</div><div class="line"></div><div class="line">        List&lt;String&gt; list1 = newObj.getEmpolyeesList();</div><div class="line">        list1.add(<span class="string">"000"</span>);</div><div class="line">        List&lt;String&gt; list2 = newObj2.getEmpolyeesList();</div><div class="line">        list2.remove(<span class="string">"abc"</span>);</div><div class="line"></div><div class="line">        originObj.getEmpolyeesList().add(<span class="string">"xyz"</span>);</div><div class="line">        originObj.getEmpolyeesList().remove(<span class="string">"def"</span>);</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"origin obj list is "</span> + originObj.getEmpolyeesList());</div><div class="line">        System.out.println(<span class="string">"new obj list by add is "</span> + newObj.getEmpolyeesList());</div><div class="line">        System.out.println(<span class="string">"new2  obj list by remove is "</span> + newObj2.getEmpolyeesList());</div><div class="line"></div><div class="line"></div><div class="line">        originObj.getInfos().get(<span class="number">0</span>).setAge(<span class="number">365</span>);</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"origin obj info is "</span> + originObj.getInfos());</div><div class="line">        System.out.println(<span class="string">"new obj info  is "</span> + newObj.getInfos());</div><div class="line">        System.out.println(<span class="string">"new2  obj info is "</span> + newObj2.getInfos());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Benefits</strong></p>
-<ul>
-<li>节省时间和资源消耗</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/creational-design-pattern/">creational design pattern</a></li></ul>
 	</div>
 
       

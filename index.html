@@ -187,6 +187,91 @@
 
       <div class="body-wrap">
   
+    <article id="post-23-备忘录模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/18/23-备忘录模式/" class="article-date">
+  	<time datetime="2016-12-18T08:26:49.000Z" itemprop="datePublished">2016-12-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/18/23-备忘录模式/">23.备忘录模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Memento-Pattern"><a href="#Memento-Pattern" class="headerlink" title="Memento Pattern"></a>Memento Pattern</h1><ol>
+<li><p><strong>What</strong> is it?</p>
+<p> 文本编辑器是我们常用的工具，里面的保存于撤销功能更是使用频繁。备忘录模式的核心思想则与其有着异曲同工之妙，备忘录模式用于存储以及恢复数据。原始数据–&gt;存储到备忘对象–&gt;恢复数据。</p>
+</li>
+<li><strong>How</strong> to implement it?<ul>
+<li>定义Originator对象，设计存储方法</li>
+<li>定义备忘对象</li>
+<li>定义操作数据对象CareTaker</li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong><br> A.Originator Class</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.memento;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/18.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileWriter</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> StringBuilder content;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FileWriter</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.content = <span class="keyword">new</span> StringBuilder();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(String text)</span> </span>&#123;</div><div class="line">        content.append(text);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Memento <span class="title">save</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Memento(name, content);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">undoSave</span><span class="params">(Object obj)</span> </span>&#123;</div><div class="line"></div><div class="line">        Memento memento = (Memento) obj;</div><div class="line">        <span class="keyword">this</span>.name = memento.name;</div><div class="line">        <span class="keyword">this</span>.content = memento.content;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"FileWriter&#123;"</span> +</div><div class="line">                <span class="string">"content="</span> + content +</div><div class="line">                <span class="string">'&#125;'</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Memento</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> String name;</div><div class="line">        <span class="keyword">private</span> StringBuilder content;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Memento</span><span class="params">(String name, StringBuilder content)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.name = name;</div><div class="line">            <span class="keyword">this</span>.content = <span class="keyword">new</span> StringBuilder(content);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> B.CareTaker Class</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.memento;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/18.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileWriterCareTaker</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Object object;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(FileWriter fileWriter)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.object = fileWriter.save();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">undoSave</span><span class="params">(FileWriter fileWriter)</span> </span>&#123;</div><div class="line">        fileWriter.undoSave(object);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> C. Memento Test Class</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.memento;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/18.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MementoPatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">        FileWriter fileWriter = <span class="keyword">new</span> FileWriter(<span class="string">"abc.txt"</span>);</div><div class="line">        fileWriter.write(<span class="string">"first data set.\n\n"</span>);</div><div class="line">        System.out.println(fileWriter);</div><div class="line"></div><div class="line">        FileWriterCareTaker careTaker = <span class="keyword">new</span> FileWriterCareTaker();</div><div class="line">        careTaker.save(fileWriter);</div><div class="line"></div><div class="line">        fileWriter.write(<span class="string">"second data set.\n\n"</span>);</div><div class="line"></div><div class="line">        System.out.println(fileWriter);</div><div class="line"></div><div class="line">        careTaker.undoSave(fileWriter);</div><div class="line"></div><div class="line">        System.out.println(fileWriter);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Important Points</strong></p>
+<ul>
+<li>易于实现</li>
+<li>可以使用序列化替代备忘对象的位置</li>
+<li>原始对象太大，备忘对象也会很大，将会占用大量内存</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-22-迭代器模式" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -982,109 +1067,6 @@
 <li>中介者模式适用于多个对象之间通信复杂的情况，使用中介对象实现通信逻辑，从而达到解耦和易扩展的功能</li>
 <li>JMS使用中介者模式结合观察者模式来实现应用订阅和发布数据给其他数据的功能</li>
 <li>如果仅仅为了解耦使用中介者模式会造成中介者越来越多，也越来越难维护。此种情况，不建议使用中介者模式 </li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-13-模板方法模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/04/13-模板方法模式/" class="article-date">
-  	<time datetime="2016-12-04T07:17:35.000Z" itemprop="datePublished">2016-12-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/04/13-模板方法模式/">13.模板方法模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Template-Method-Pattern"><a href="#Template-Method-Pattern" class="headerlink" title="Template Method Pattern"></a>Template Method Pattern</h1><ol>
-<li><p><strong>What</strong> is it?<br> 举个例子：</p>
-<ul>
-<li>任务：建造房屋</li>
-<li><p>建造方法：</p>
-<ol>
-<li>打地基</li>
-<li>打木桩</li>
-<li>造墙</li>
-<li>造窗子</li>
-<li>封顶</li>
-<li>装修  </li>
-</ol>
-<p>如建造房屋的例子，1-6顺序不可变，每一步根据需求自行选择具体方法，比如可以做木墙也可以做土墙，但是必须先造墙，再造窗子，顺序不可变。<br>如果经过抽象出来的对象包含一类方法，这类方法是一套算法并且这套算法每一步的执行顺序不可变，则可以使用模板方法模式。换句话说，模板方法的核心思想就是封装一套任务执行的步骤且每一步执行顺序固定，不可更换。子类可以根据需求，自定义每一步的具体实现。</p>
-</li>
-</ul>
-</li>
-<li><strong>How</strong> to implement it?<ul>
-<li>设计抽象模板方法类（包含模板方法和基本实现以及需要子类实现的抽象方法）</li>
-<li>实现模板类（实现抽象方法或子类需求中需要覆写的方法）</li>
-</ul>
-</li>
-<li><p><strong>Code Demo</strong><br> A. Template Method Abstract Class</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.templatemethod;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/4.</div><div class="line"> * A. Template Method Abstract Class</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">HouseTemplate</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">//模板方法，不可父写</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">buildHouse</span><span class="params">()</span> </span>&#123;</div><div class="line">        buildFoundation();</div><div class="line">        buildPillars();</div><div class="line">        buildWalls();</div><div class="line">        buildWindows();</div><div class="line">        System.out.println(<span class="string">"house build completed."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//需要子类实现的方法</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">buildWalls</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">buildPillars</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">//默认不可覆写的方法</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildFoundation</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building foundation with cement, iron rods and and."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildWindows</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building glass windows."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p> B. Template Method Concrete Classes</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.templatemethod;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/4.</div><div class="line"> * B. Template Method Concrete Classes</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WoodenHouse</span> <span class="keyword">extends</span> <span class="title">HouseTemplate</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildWalls</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building wooden walls."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildPillars</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building pillars with wooden coating."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.templatemethod;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/4.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlassHouse</span> <span class="keyword">extends</span> <span class="title">HouseTemplate</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildWalls</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building glass walls."</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buildPillars</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"building pillars with glass coating."</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p> C. Template Method Pattern Client</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.templatemethod;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/4.</div><div class="line"> * C. Template Method Pattern Client</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TemplateMethodPatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        HouseTemplate house = <span class="keyword">new</span> WoodenHouse();</div><div class="line">        house.buildHouse();</div><div class="line">        System.out.println(<span class="string">"-------------------------------"</span>);</div><div class="line">        house = <span class="keyword">new</span> GlassHouse();</div><div class="line">        house.buildHouse();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>JDK Example</strong></p>
-<ul>
-<li>InputStream/OutputStream/Reader/Writer类的非抽象方法 </li>
-<li>AbstractList/AbstractSet/AbstractMap类的非抽象方法</li>
-</ul>
-</li>
-<li><p><strong>Important Points</strong></p>
-<ul>
-<li>模板方法中的步骤顺序固定，模板方法声明为final，子类和基类每一步方法实现可不同</li>
-<li>超类选择子类方法加载</li>
-<li>基类中的默认实现就像一个钩子可以被子类覆写，也可声明为final不被子类覆写 </li>
 </ul>
 </li>
 </ol>
