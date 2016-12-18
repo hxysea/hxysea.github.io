@@ -74,7 +74,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -186,6 +186,77 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-spring-mvc-常见错误解决方法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/10/spring-mvc-常见错误解决方法/" class="article-date">
+  	<time datetime="2016-07-10T02:13:53.000Z" itemprop="datePublished">2016-07-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/10/spring-mvc-常见错误解决方法/">spring mvc 常见错误解决方法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SpringMVC-RequestParam-中文乱码问题解决"><a href="#SpringMVC-RequestParam-中文乱码问题解决" class="headerlink" title="SpringMVC @RequestParam 中文乱码问题解决"></a>SpringMVC @RequestParam 中文乱码问题解决</h1><ol>
+<li><p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/result"</span>, method = RequestMethod.GET)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getResult</span><span class="params">(ModelMap map, @RequestParam String name, @RequestParam <span class="keyword">int</span> age)</span></span>&#123;</div><div class="line">map.addAttribute(<span class="string">"name"</span>, name);</div><div class="line">map.addAttribute(<span class="string">"age"</span>, age);</div><div class="line"><span class="keyword">return</span> <span class="string">"result"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>错误现象：<br><img src="http://i.imgur.com/ArSPA1z.png" alt=""></p>
+</li>
+<li><p>解决方法：修改tomcat目录下<strong>server.xml</strong>的配置（解压路径\apache-tomcat-7.0.64\conf\server.xml），增加编码格式：<br><img src="http://i.imgur.com/AtGvYsJ.png" alt=""></p>
+</li>
+<li><p>正确现象：<br><img src="http://i.imgur.com/los7ahA.png" alt=""></p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-mvc/">spring mvc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/点滴/">点滴</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/技术/">技术</a><a class="article-category-link" href="/categories/技术/学习/">学习</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-睡前小思" class="article article-type-post" itemscope itemprop="blogPost">
   

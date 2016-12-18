@@ -74,7 +74,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -186,6 +186,82 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-Behavioral-Design-Patterns" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/04/Behavioral-Design-Patterns/" class="article-date">
+  	<time datetime="2016-12-04T07:16:57.000Z" itemprop="datePublished">2016-12-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/04/Behavioral-Design-Patterns/">Behavioral Design Patterns</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="行为型设计模式"><a href="#行为型设计模式" class="headerlink" title="行为型设计模式"></a>行为型设计模式</h1><p>对象之间进行通信或者说是进行交互是构建一个系统必不可少的环节。将对象之间交互的一些优秀思想进行总结提炼就构成了行为型设计模式的精髓，换言之，行为型设计模式为系统设计中对象交互提供了一套优秀的解决方案，这套方案使对象之间松耦合且更容易实现灵活的扩展。</p>
+<p>其中，代表性的设计模式有如下几个：</p>
+<ol>
+<li>Template Method Pattern</li>
+<li>Mediator Pattern</li>
+<li>Chain of Responsibility Pattern</li>
+<li>Observer Pattern</li>
+<li>Strategy Pattern</li>
+<li>Command Pattern</li>
+<li>State Pattern</li>
+<li>Visitor Pattern</li>
+<li>Interpreter Pattern</li>
+<li>Iterator Pattern</li>
+<li>Memento Pattern</li>
+</ol>
+<p>行为型设计模式关注的是对象之间交互进行设计，其中的精髓需要不断的理解及实践放得其真谛。最后，结合创建型以及结构型设计模式共同创建一个健壮的系统。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-12-装饰者模式" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -898,95 +974,6 @@
 <li><p><strong>Benefits</strong></p>
 <ul>
 <li>节省时间和资源消耗</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/creational-design-pattern/">creational design pattern</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-4-建造者模式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/11/22/4-建造者模式/" class="article-date">
-  	<time datetime="2016-11-22T13:33:49.000Z" itemprop="datePublished">2016-11-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/22/4-建造者模式/">4.建造者模式</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Builder-Pattern"><a href="#Builder-Pattern" class="headerlink" title="Builder Pattern"></a>Builder Pattern</h1><ol>
-<li><p><strong>What</strong> is it?</p>
-<p> 工厂模式和抽象工厂模式在一定程度上解决了根据客户端需求创建不同对象的问题，但是它有以下几个缺点：    </p>
-<ul>
-<li>如果客户端传递给工厂类的参数过多，则易错</li>
-<li>若有可选参数，则需要将此参数设为null，冗余</li>
-<li><p>如果工厂类创建的对象过于复杂，则会增加代码复杂度</p>
-<p>针对以上问题进行抽象，对于必须和可选参数分别处理，由此而产生了建造者模式。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>How</strong> to implement it?</p>
-<ul>
-<li>编写一个静态内部类，包含目标类所有属性，且静态内部类命名规范符合xxBuilder规则</li>
-<li>Builder类中使用公共的构造函数设置所有必须属性</li>
-<li>Builder类提供方法设置可选属性，且设置后返回同一个builder对象</li>
-<li>Builder类提供创建目标对象的方法，目标类有一个以builder类为参数的私有构造函数</li>
-</ul>
-</li>
-<li><p><strong>Code Demo</strong></p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.creational.builder;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/22.</div><div class="line"> * 创建者模式创建对象</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;</div><div class="line">    <span class="comment">//必选参数</span></div><div class="line">    <span class="keyword">private</span> String ram;</div><div class="line">    <span class="keyword">private</span> String cpu;</div><div class="line"></div><div class="line">    <span class="comment">//可选参数</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isBlutoothEnabled;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getRam</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> ram;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCpu</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> cpu;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBlutoothEnabled</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> isBlutoothEnabled;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Computer</span><span class="params">(ComputerBuilder builder)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.ram = builder.ram;</div><div class="line">        <span class="keyword">this</span>.cpu = builder.cpu;</div><div class="line">		<span class="keyword">this</span>.isBlutoothEnabled = builder.isBlutoothEnabled;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Computer&#123;"</span> +</div><div class="line">                <span class="string">"ram='"</span> + ram + <span class="string">'\''</span> +</div><div class="line">                <span class="string">", cpu='"</span> + cpu + <span class="string">'\''</span> +</div><div class="line">                <span class="string">", isBlutoothEnabled="</span> + isBlutoothEnabled +</div><div class="line">                <span class="string">'&#125;'</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//建造者类</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerBuilder</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> String ram;</div><div class="line">        <span class="keyword">private</span> String cpu;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> isBlutoothEnabled;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> ComputerBuilder <span class="title">setIsBlutoothEnabled</span><span class="params">(<span class="keyword">boolean</span> isBlutoothEnabled)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.isBlutoothEnabled = isBlutoothEnabled;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ComputerBuilder</span><span class="params">(String ram, String cpu)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.ram = ram;</div><div class="line">            <span class="keyword">this</span>.cpu = cpu;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> Computer <span class="title">build</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Computer(<span class="keyword">this</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.creational.builder;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/11/22.</div><div class="line"> * 测试</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BuilderPatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Computer computer = <span class="keyword">new</span> Computer.ComputerBuilder(<span class="string">"16G"</span>, <span class="string">"8GHZ"</span>).setIsBlutoothEnabled(<span class="keyword">true</span>).build();</div><div class="line"></div><div class="line">        System.out.print(computer);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><strong>Benefits</strong></p>
-<ul>
-<li>分开设置必选和可选参数，一行代码设置入参</li>
-<li>先设置参数，后创建对象，保证了创建的对象的状态的一致性</li>
 </ul>
 </li>
 </ol>

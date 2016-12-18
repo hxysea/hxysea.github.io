@@ -74,7 +74,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -186,6 +186,104 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-22-迭代器模式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/17/22-迭代器模式/" class="article-date">
+  	<time datetime="2016-12-17T13:59:06.000Z" itemprop="datePublished">2016-12-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/17/22-迭代器模式/">22.迭代器模式</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Iterator-Pattern"><a href="#Iterator-Pattern" class="headerlink" title="Iterator Pattern"></a>Iterator Pattern</h1><ol>
+<li><p><strong>What</strong> is it?</p>
+<p> 遍历一组集合对象是编程中的常有操作，若客户端编写遍历逻辑，则将客户端与集合强耦合且遍历逻辑难以维护，易出错。针对于此，将迭代遍历逻辑封装起来，只暴露接口给客户端，则将客户端从耦合中解救出来，且程序更健壮也更以维护，这就是迭代器模式的核心思想。</p>
+</li>
+<li><strong>How</strong> to implement it?<ul>
+<li>定义集合遍历约束（客户端使用的入参类型）</li>
+<li>定义操作对象</li>
+<li>定义集合接口（增、删、迭代遍历接口）</li>
+<li>定义迭代器接口</li>
+<li>实现集合接口</li>
+<li>实现迭代器接口</li>
+</ul>
+</li>
+<li><p><strong>Code Demo</strong><br> A.约束条件（操作对象类型定义）</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.iterator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/18.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ChannelType &#123;</div><div class="line">    ENGLISH, CHIANA, FRENCH, ALL;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> B.操作对象</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> designpattern.behavioral.iterator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/18.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Channel</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getFrequency</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> frequency;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> ChannelType <span class="title">getType</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> type;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">double</span> frequency;</div><div class="line">    <span class="keyword">private</span> ChannelType type;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Channel</span><span class="params">(<span class="keyword">double</span> frequency, ChannelType type)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.frequency = frequency;</div><div class="line">        <span class="keyword">this</span>.type = type;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Channel&#123;"</span> +</div><div class="line">                <span class="string">"frequency="</span> + frequency +</div><div class="line">                <span class="string">", type="</span> + type +</div><div class="line">                <span class="string">'&#125;'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> C.集合接口</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.iterator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/18.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ChannelCollection</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Channel channel)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">remove</span><span class="params">(Channel channel)</span></span>;</div><div class="line"></div><div class="line">    <span class="function">ChannelIterator <span class="title">iterator</span><span class="params">(ChannelType type)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> D.迭代接口</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.iterator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/18.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ChannelIterator</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function">Channel <span class="title">next</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> E.集合实现</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.iterator;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/18.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChannelList</span> <span class="keyword">implements</span> <span class="title">ChannelCollection</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;Channel&gt; channels;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ChannelList</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.channels = <span class="keyword">new</span> ArrayList&lt;Channel&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Channel channel)</span> </span>&#123;</div><div class="line">        channels.add(channel);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Channel channel)</span> </span>&#123;</div><div class="line"></div><div class="line">        channels.remove(channel);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> ChannelIterator <span class="title">iterator</span><span class="params">(ChannelType type)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ChannelIteratorImpl(type, channels);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ChannelIteratorImpl</span> <span class="keyword">implements</span> <span class="title">ChannelIterator</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> ChannelType type;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> position;</div><div class="line"></div><div class="line">        <span class="keyword">private</span> List&lt;Channel&gt; channels;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ChannelIteratorImpl</span><span class="params">(ChannelType type, List&lt;Channel&gt; channels)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.type = type;</div><div class="line">            <span class="keyword">this</span>.channels = channels;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ChannelIteratorImpl</span><span class="params">(ChannelType type)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.type = type;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">int</span> size = channels.size();</div><div class="line">            <span class="keyword">while</span> (position &lt; size) &#123;</div><div class="line">                Channel channel = channels.get(position);</div><div class="line">                <span class="keyword">if</span> (channels.contains(channel) &amp;&amp; (channel.getType().equals(ChannelType.ALL) || channel.getType().equals(type))) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    position++;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> Channel <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">            Channel channel = channels.get(position);</div><div class="line">            position++;</div><div class="line">            <span class="keyword">return</span> channel;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> F.Test</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> designpattern.behavioral.iterator;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by AbuGe on 2016/12/18.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IteratorPatternTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        ChannelCollection channelCollection = populateChannelCollection();</div><div class="line"></div><div class="line">        ChannelIterator iterator = channelCollection.iterator(ChannelType.ENGLISH);</div><div class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</div><div class="line">            Channel next = iterator.next();</div><div class="line">            System.out.println(next);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        System.out.println(<span class="string">"\n****************************************\n"</span>);</div><div class="line"></div><div class="line">        ChannelIterator iterator1 = channelCollection.iterator(ChannelType.CHIANA);</div><div class="line">        <span class="keyword">while</span>(iterator1.hasNext())&#123;</div><div class="line">            Channel next = iterator1.next();</div><div class="line">            System.out.println(next);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ChannelCollection <span class="title">populateChannelCollection</span><span class="params">()</span> </span>&#123;</div><div class="line">        ChannelList channelList = <span class="keyword">new</span> ChannelList();</div><div class="line">        channelList.add(<span class="keyword">new</span> Channel(<span class="number">123.0</span>, ChannelType.ENGLISH));</div><div class="line">        channelList.add(<span class="keyword">new</span> Channel(<span class="number">103.1</span>, ChannelType.ALL));</div><div class="line">        channelList.add(<span class="keyword">new</span> Channel(<span class="number">163.6</span>, ChannelType.ENGLISH));</div><div class="line">        channelList.add(<span class="keyword">new</span> Channel(<span class="number">113.2</span>, ChannelType.FRENCH));</div><div class="line">        channelList.add(<span class="keyword">new</span> Channel(<span class="number">193.9</span>, ChannelType.CHIANA));</div><div class="line"></div><div class="line">        <span class="keyword">return</span> channelList;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>JDK Example</strong></p>
+<ul>
+<li>java.util.集合（Set/Map/List）</li>
+<li>java.util.Scanner </li>
+</ul>
+</li>
+<li><strong>Important Points</strong><ul>
+<li><strong>隐藏实现</strong>：为客户端提供一个标准的方式访问集合</li>
+<li>客户端<strong>操作</strong>集合<strong>更容易</strong>：迭代逻辑在集合内部定义</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-21-解释器模式" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -990,82 +1088,6 @@
 </ul>
 </li>
 </ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/behavioral-design-patterns/">behavioral design patterns</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/design-pattern/">design pattern</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Behavioral-Design-Patterns" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/04/Behavioral-Design-Patterns/" class="article-date">
-  	<time datetime="2016-12-04T07:16:57.000Z" itemprop="datePublished">2016-12-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/04/Behavioral-Design-Patterns/">Behavioral Design Patterns</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="行为型设计模式"><a href="#行为型设计模式" class="headerlink" title="行为型设计模式"></a>行为型设计模式</h1><p>对象之间进行通信或者说是进行交互是构建一个系统必不可少的环节。将对象之间交互的一些优秀思想进行总结提炼就构成了行为型设计模式的精髓，换言之，行为型设计模式为系统设计中对象交互提供了一套优秀的解决方案，这套方案使对象之间松耦合且更容易实现灵活的扩展。</p>
-<p>其中，代表性的设计模式有如下几个：</p>
-<ol>
-<li>Template Method Pattern</li>
-<li>Mediator Pattern</li>
-<li>Chain of Responsibility Pattern</li>
-<li>Observer Pattern</li>
-<li>Strategy Pattern</li>
-<li>Command Pattern</li>
-<li>State Pattern</li>
-<li>Visitor Pattern</li>
-<li>Interpreter Pattern</li>
-<li>Iterator Pattern</li>
-<li>Memento Pattern</li>
-</ol>
-<p>行为型设计模式关注的是对象之间交互进行设计，其中的精髓需要不断的理解及实践放得其真谛。最后，结合创建型以及结构型设计模式共同创建一个健壮的系统。</p>
 
       
     </div>
